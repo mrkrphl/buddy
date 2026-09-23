@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1725F90249448D4F12959E02 /* DeviceAIReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */; };
+		2F1684D1001F705A34CBFD4B /* PlateVisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */; };
+		40F608137B08797BF7ABBCB3 /* PlatePhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */; };
+		42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34F47FBC5CFBEC7BDCE065 /* BuddyApp.swift */; };
+		59DE431B45BB621CF7D5A965 /* MealWatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5577077689CF31466357F59 /* MealWatchService.swift */; };
+		78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AD187AC8B14EBA55B03E /* RootView.swift */; };
+		9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */; };
+		A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */; };
+		A4689C5AB25E8274CD6A728D /* BuddySchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2931273B517A6C5C03E0EA20 /* BuddySchema.swift */; };
+		ACBD9A7C9492ED327DCF3037 /* MealWatchBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC4955B8D538B486C868142 /* MealWatchBeat.swift */; };
+		C130C146EC8350CF3CBE1991 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B3EE25AFA5503FA94B6B4 /* TodayView.swift */; };
+		CA5ADF92F69329CFA25092CE /* BuddyPeerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */; };
+		D68109C8EEF80DCE79F3851B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */; };
+		DEC384F3948225A805D531AD /* BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9727837F6086123DA15398 /* BuddyTests.swift */; };
+		E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F8A66902028F1C6D9B18E /* BuddyModelContainer.swift */; };
+		F01D40E818ABD1CA267464B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A701D0C002D62433BBDE4552 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2BA504489097108387511FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92D6CBD1E5E238F32E5109CD;
+			remoteInfo = Buddy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTheme.swift; sourceTree = "<group>"; };
+		124B3EE25AFA5503FA94B6B4 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		156196AE7079F82F5DEAF7F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1632AD187AC8B14EBA55B03E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatePhotoCapture.swift; sourceTree = "<group>"; };
+		2931273B517A6C5C03E0EA20 /* BuddySchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddySchema.swift; sourceTree = "<group>"; };
+		38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPeerBase.swift; sourceTree = "<group>"; };
+		472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateVisionService.swift; sourceTree = "<group>"; };
+		49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4F0F8A66902028F1C6D9B18E /* BuddyModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyModelContainer.swift; sourceTree = "<group>"; };
+		51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPlateSheet.swift; sourceTree = "<group>"; };
+		7E9727837F6086123DA15398 /* BuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTests.swift; sourceTree = "<group>"; };
+		8BE6426EC12149C808484799 /* Buddy.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Buddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAIReadiness.swift; sourceTree = "<group>"; };
+		9F34F47FBC5CFBEC7BDCE065 /* BuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyApp.swift; sourceTree = "<group>"; };
+		B62ADAFAFF48938BEF43E220 /* BuddyTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC4955B8D538B486C868142 /* MealWatchBeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWatchBeat.swift; sourceTree = "<group>"; };
+		C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5577077689CF31466357F59 /* MealWatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWatchService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		7664ADC03C17271916703641 /* BuddyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E9727837F6086123DA15398 /* BuddyTests.swift */,
+			);
+			path = BuddyTests;
+			sourceTree = "<group>";
+		};
+		7AE35FABDB2311D4E1B0719A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				9F34F47FBC5CFBEC7BDCE065 /* BuddyApp.swift */,
+				4F0F8A66902028F1C6D9B18E /* BuddyModelContainer.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A24A8F8CE15D32470B48D341 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */,
+				1632AD187AC8B14EBA55B03E /* RootView.swift */,
+				49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */,
+				124B3EE25AFA5503FA94B6B4 /* TodayView.swift */,
+				51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AB03F5505AA50E8F32ECE3F0 /* CompanionBeats */ = {
+			isa = PBXGroup;
+			children = (
+				38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */,
+				BEC4955B8D538B486C868142 /* MealWatchBeat.swift */,
+			);
+			path = CompanionBeats;
+			sourceTree = "<group>";
+		};
+		B784DEB52F1BFBBCE73EC44D /* Buddy */ = {
+			isa = PBXGroup;
+			children = (
+				C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */,
+				156196AE7079F82F5DEAF7F6 /* Info.plist */,
+				7AE35FABDB2311D4E1B0719A /* App */,
+				DA42F27D81A625BCEEF226A7 /* Models */,
+				D7907F4BBA1BE8A850E794EB /* Services */,
+				DB575FEDD4BDCC6D786F7C2F /* Theme */,
+				A24A8F8CE15D32470B48D341 /* Views */,
+			);
+			path = Buddy;
+			sourceTree = "<group>";
+		};
+		C6637391C400BE2360AA0BD5 = {
+			isa = PBXGroup;
+			children = (
+				B784DEB52F1BFBBCE73EC44D /* Buddy */,
+				7664ADC03C17271916703641 /* BuddyTests */,
+				FF08E58144334FC80ACD8C2B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D7907F4BBA1BE8A850E794EB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */,
+				E5577077689CF31466357F59 /* MealWatchService.swift */,
+				472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */,
+				AB03F5505AA50E8F32ECE3F0 /* CompanionBeats */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DA42F27D81A625BCEEF226A7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2931273B517A6C5C03E0EA20 /* BuddySchema.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DB575FEDD4BDCC6D786F7C2F /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		FF08E58144334FC80ACD8C2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BE6426EC12149C808484799 /* Buddy.app */,
+				B62ADAFAFF48938BEF43E220 /* BuddyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92D6CBD1E5E238F32E5109CD /* Buddy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0B1F9EA9F160FD7052F3062 /* Build configuration list for PBXNativeTarget "Buddy" */;
+			buildPhases = (
+				C365EA6A471FF0D020B2C84E /* Sources */,
+				323B0331E9C0470B632D49C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Buddy;
+			packageProductDependencies = (
+			);
+			productName = Buddy;
+			productReference = 8BE6426EC12149C808484799 /* Buddy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CA5DBCEBFC45D09090E9EA4A /* BuddyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F45F5B270659E03AFFF2497 /* Build configuration list for PBXNativeTarget "BuddyTests" */;
+			buildPhases = (
+				BA30F35894BB08AF169EAC70 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A37D980BFDEFCEF6CEF1DE20 /* PBXTargetDependency */,
+			);
+			name = BuddyTests;
+			packageProductDependencies = (
+			);
+			productName = BuddyTests;
+			productReference = B62ADAFAFF48938BEF43E220 /* BuddyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2BA504489097108387511FD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					92D6CBD1E5E238F32E5109CD = {
+						DevelopmentTeam = 4KJ3FW47M2;
+					};
+					CA5DBCEBFC45D09090E9EA4A = {
+						DevelopmentTeam = 4KJ3FW47M2;
+					};
+				};
+			};
+			buildConfigurationList = 950CA3CBD4718CC74D70A633 /* Build configuration list for PBXProject "Buddy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C6637391C400BE2360AA0BD5;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = FF08E58144334FC80ACD8C2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92D6CBD1E5E238F32E5109CD /* Buddy */,
+				CA5DBCEBFC45D09090E9EA4A /* BuddyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		323B0331E9C0470B632D49C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01D40E818ABD1CA267464B8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BA30F35894BB08AF169EAC70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEC384F3948225A805D531AD /* BuddyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C365EA6A471FF0D020B2C84E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */,
+				E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */,
+				CA5ADF92F69329CFA25092CE /* BuddyPeerBase.swift in Sources */,
+				A4689C5AB25E8274CD6A728D /* BuddySchema.swift in Sources */,
+				A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */,
+				1725F90249448D4F12959E02 /* DeviceAIReadiness.swift in Sources */,
+				ACBD9A7C9492ED327DCF3037 /* MealWatchBeat.swift in Sources */,
+				59DE431B45BB621CF7D5A965 /* MealWatchService.swift in Sources */,
+				40F608137B08797BF7ABBCB3 /* PlatePhotoCapture.swift in Sources */,
+				2F1684D1001F705A34CBFD4B /* PlateVisionService.swift in Sources */,
+				78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */,
+				D68109C8EEF80DCE79F3851B /* SettingsView.swift in Sources */,
+				C130C146EC8350CF3CBE1991 /* TodayView.swift in Sources */,
+				9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A37D980BFDEFCEF6CEF1DE20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92D6CBD1E5E238F32E5109CD /* Buddy */;
+			targetProxy = A701D0C002D62433BBDE4552 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		133984275C2F2E3947896782 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Buddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy watches your plate photo on-device to estimate energy and keep your day visible.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		3BD4820540835074392448BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4KJ3FW47M2;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Debug;
+		};
+		671386B24B1FDC35B07EE767 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4KJ3FW47M2;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.10;
+			};
+			name = Release;
+		};
+		7286F02EA73CA253F6E4F4A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Buddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
+				INFOPLIST_KEY_CFBundleIconName = AppIcon;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy watches your plate photo on-device to estimate energy and keep your day visible.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		9F4514EABF41DC5A2BEF352F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Buddy";
+			};
+			name = Debug;
+		};
+		CEF0B945C886A5AA7EE0D0D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Buddy";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F45F5B270659E03AFFF2497 /* Build configuration list for PBXNativeTarget "BuddyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F4514EABF41DC5A2BEF352F /* Debug */,
+				CEF0B945C886A5AA7EE0D0D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		950CA3CBD4718CC74D70A633 /* Build configuration list for PBXProject "Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BD4820540835074392448BB /* Debug */,
+				671386B24B1FDC35B07EE767 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D0B1F9EA9F160FD7052F3062 /* Build configuration list for PBXNativeTarget "Buddy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				133984275C2F2E3947896782 /* Debug */,
+				7286F02EA73CA253F6E4F4A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2BA504489097108387511FD /* Project object */;
+}

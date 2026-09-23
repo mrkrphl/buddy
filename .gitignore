@@ -1,0 +1,7 @@
+# Buddy
+.DS_Store
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.build/
+*.xcresult

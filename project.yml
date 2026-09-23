@@ -1,0 +1,68 @@
+name: Buddy
+options:
+  bundleIdPrefix: com.nightfolio
+  deploymentTarget:
+    iOS: "18.0"
+  xcodeVersion: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    DEVELOPMENT_TEAM: "4KJ3FW47M2"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  Buddy:
+    type: application
+    platform: iOS
+    sources:
+      - path: Buddy
+    resources:
+      - Buddy/Assets.xcassets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nightfolio.buddy
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_KEY_CFBundleDisplayName: Buddy
+        INFOPLIST_KEY_CFBundleIconName: AppIcon
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_NSCameraUsageDescription: Buddy watches your plate photo on-device to estimate energy and keep your day visible.
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: Buddy can use a library photo of your plate to estimate energy on-device.
+        INFOPLIST_KEY_ITSAppUsesNonExemptEncryption: false
+        GENERATE_INFOPLIST_FILE: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+        ENABLE_TESTABILITY: YES
+    info:
+      path: Buddy/Info.plist
+      properties:
+        CFBundleURLTypes:
+          - CFBundleURLName: com.nightfolio.buddy
+            CFBundleURLSchemes:
+              - buddy
+  BuddyTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: BuddyTests
+    dependencies:
+      - target: Buddy
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nightfolio.buddy.tests
+        GENERATE_INFOPLIST_FILE: YES
+        IPHONEOS_DEPLOYMENT_TARGET: "18.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Buddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Buddy"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+schemes:
+  Buddy:
+    build:
+      targets:
+        Buddy: all
+        BuddyTests: [test]
+    test:
+      targets:
+        - BuddyTests
