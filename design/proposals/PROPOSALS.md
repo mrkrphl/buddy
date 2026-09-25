@@ -2,8 +2,8 @@
 
 Three directions. Same promise, tokens, and tagline. Different marks.
 
-**Promise:** photo-first food companion — watch what you eat.  
-**Tagline:** Watch what you eat.  
+**Promise:** photo-first food companion — see what you eat.  
+**Tagline:** See what you eat. · **Loop:** Plan & Log  
 **Tokens:** field `#0B0B0C` · bone `#E6E2DA` · dim `#8A8580` · needle `#E2452B`  
 **Studio:** Made by Night Folio (door stays off App Icon)
 

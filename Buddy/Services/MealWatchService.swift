@@ -95,7 +95,7 @@ enum MealWatchService {
             carbsG: doubleValue(obj["carbsG"]) ?? 0,
             fatG: doubleValue(obj["fatG"]) ?? 0,
             confidence: min(1, max(0, doubleValue(obj["confidence"]) ?? 0.55)),
-            buddyLine: MealWatchBeat.sanitizeBuddyLine((obj["buddyLine"] as? String) ?? "Logged. I’m watching with you."),
+            buddyLine: MealWatchBeat.sanitizeBuddyLine((obj["buddyLine"] as? String) ?? "Logged. I’m with you."),
             usedFoundationModels: usedFM
         )
     }
@@ -132,9 +132,9 @@ enum MealWatchService {
 
         let line: String
         if day.caloriesSoFar + calories > day.target {
-            line = "That’s on the board. We’re past the target — still worth watching."
+            line = "That’s on the board. We’re past the target — still worth logging."
         } else {
-            line = "Got it. \(calories) kcal on this plate — watching with you."
+            line = "Got it. \(calories) kcal on this plate — logged with you."
         }
 
         return Estimate(

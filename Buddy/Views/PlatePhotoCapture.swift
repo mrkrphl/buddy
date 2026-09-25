@@ -13,7 +13,7 @@ struct PlatePhotoCapture: View {
             Button {
                 showCamera = true
             } label: {
-                Label("Watch plate", systemImage: "camera.fill")
+                Label("Log plate", systemImage: "camera.fill")
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)

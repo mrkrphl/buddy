@@ -84,7 +84,7 @@ struct WatchPlateSheet: View {
                     .padding(20)
                 }
             }
-            .navigationTitle("Watch plate")
+            .navigationTitle("Log plate")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -103,7 +103,7 @@ struct WatchPlateSheet: View {
             VStack(alignment: .leading, spacing: 6) {
                 switch phase {
                 case .analyzing:
-                    Text("Watching…")
+                    Text("Reading plate…")
                         .font(.headline)
                         .foregroundStyle(BuddyTheme.bone)
                     ProgressView()
@@ -118,7 +118,7 @@ struct WatchPlateSheet: View {
                             .foregroundStyle(BuddyTheme.dim)
                     }
                 case .failed:
-                    Text(errorText ?? "Couldn’t watch that plate.")
+                    Text(errorText ?? "Couldn’t read that plate.")
                         .font(.body)
                         .foregroundStyle(BuddyTheme.bone)
                 }

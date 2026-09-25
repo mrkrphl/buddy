@@ -1,20 +1,20 @@
 # Buddy
 
-Photo-first calorie companion for iPhone — a **marshmallow ghost** who helps you **watch what you eat**.
+Photo-first calorie companion for iPhone — a **marshmallow ghost** who helps you **see what you eat**.
 
-**What’s up, bud?** · Made by Night Folio.
+**What’s up, bud?** · **Plan & Log** · Made by Night Folio.
 
 ## Stack
 
 - SwiftUI + SwiftData (local-only, no account)
-- Photos / Camera → plate watch
+- Photos / Camera → plate log
 - Foundation Models (iOS 26+) specialized for calorie & fitness estimates + Buddy voice
 - Offline heuristic fallback when Apple Intelligence is unavailable
 - Native (XcodeGen), not Expo
 
 ## Brand
 
-See [`brand.md`](./brand.md) · board [`design/buddy-brandkit-board.png`](./design/buddy-brandkit-board.png)
+See [`brand.md`](./brand.md) · board [`design/buddy-brandkit-locked.png`](./design/buddy-brandkit-locked.png)
 
 ## Generate & run
 
@@ -29,9 +29,13 @@ Use an Apple Intelligence–capable device (or Simulator on iOS 26+) to exercise
 ## MVP
 
 1. **Today** — daily energy ring, plate feed, Buddy mood + XP / streak
-2. **Watch a plate** — camera or library → FM meal estimate → confirm → XP
+2. **Log a plate** — camera or library → FM meal estimate → confirm → XP
 3. **Buddy** — short character reactions (never guilt-coach)
 4. **Settings** — daily calorie target, AI readiness
+
+## v1.1
+
+**Plan & Log** — plan meals ahead; snap/log when real (`prototypes/meal-plan/`).
 
 ## Privacy
 

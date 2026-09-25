@@ -4,7 +4,7 @@ import Foundation
 import FoundationModels
 #endif
 
-/// Onboarding / Settings: is on-device meal watch available?
+/// Onboarding / Settings: is on-device plate logging available?
 enum DeviceAIReadiness {
     enum Status: Equatable {
         case available
@@ -24,7 +24,7 @@ enum DeviceAIReadiness {
                 return .unknown
             }
         }
-        return .unavailable(reason: "On-device meal watch needs iOS 26 with Apple Intelligence.")
+        return .unavailable(reason: "On-device plate estimates need iOS 26 with Apple Intelligence.")
         #else
         return .unavailable(reason: "This build can’t reach Apple Intelligence.")
         #endif
@@ -37,7 +37,7 @@ enum DeviceAIReadiness {
         case .deviceNotEligible:
             return "This iPhone doesn’t support on-device Buddy estimates."
         case .appleIntelligenceNotEnabled:
-            return "Turn on Apple Intelligence in Settings for smarter plate watches."
+            return "Turn on Apple Intelligence in Settings for smarter plate logs."
         case .modelNotReady:
             return "Apple Intelligence isn’t ready yet on this iPhone."
         @unknown default:
@@ -49,9 +49,9 @@ enum DeviceAIReadiness {
     static var headline: String {
         switch current() {
         case .available:
-            return "Buddy can watch plates on-device"
+            return "Buddy can read plates on-device"
         case .unavailable, .unknown:
-            return "Photo watch works — smart estimates need Apple Intelligence"
+            return "Snap works — smart estimates need Apple Intelligence"
         }
     }
 

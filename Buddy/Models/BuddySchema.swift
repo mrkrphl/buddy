@@ -111,11 +111,59 @@ final class BuddyPreferences {
     var id: UUID
     var dailyCalorieTarget: Int
     var hasSeenOnboarding: Bool
+    /// Raw values of `KitchenApplianceID` the user owns.
+    var ownedApplianceIDs: [String] = []
+    /// Optional per-appliance notes, keyed by appliance raw value.
+    var applianceNotesJSON: String = "{}"
 
-    init(dailyCalorieTarget: Int = 2200, hasSeenOnboarding: Bool = false) {
+    var ownedAppliances: Set<KitchenApplianceID> {
+        get { KitchenApplianceStore.decodeIDs(ownedApplianceIDs) }
+        set { ownedApplianceIDs = KitchenApplianceStore.encodeIDs(newValue) }
+    }
+
+    var applianceNotes: [String: String] {
+        get {
+            guard let data = applianceNotesJSON.data(using: .utf8),
+                  let dict = try? JSONDecoder().decode([String: String].self, from: data)
+            else { return [:] }
+            return dict
+        }
+        set {
+            if let data = try? JSONEncoder().encode(newValue),
+               let s = String(data: data, encoding: .utf8) {
+                applianceNotesJSON = s
+            } else {
+                applianceNotesJSON = "{}"
+            }
+        }
+    }
+
+    init(
+        dailyCalorieTarget: Int = 2200,
+        hasSeenOnboarding: Bool = false,
+        ownedApplianceIDs: [String] = [],
+        applianceNotesJSON: String = "{}"
+    ) {
         self.id = UUID()
         self.dailyCalorieTarget = dailyCalorieTarget
         self.hasSeenOnboarding = hasSeenOnboarding
+        self.ownedApplianceIDs = ownedApplianceIDs
+        self.applianceNotesJSON = applianceNotesJSON
+    }
+
+    func note(for id: KitchenApplianceID) -> String {
+        applianceNotes[id.rawValue] ?? ""
+    }
+
+    func setNote(_ note: String, for id: KitchenApplianceID) {
+        var map = applianceNotes
+        let trimmed = note.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            map.removeValue(forKey: id.rawValue)
+        } else {
+            map[id.rawValue] = trimmed
+        }
+        applianceNotes = map
     }
 }
 

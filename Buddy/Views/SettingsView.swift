@@ -8,11 +8,34 @@ struct SettingsView: View {
 
     private var prefs: BuddyPreferences? { prefsRows.first }
 
+    private var kitchenSummary: String {
+        let n = prefs?.ownedAppliances.count ?? 0
+        if n == 0 { return "Not stocked yet" }
+        return "\(n) appliance\(n == 1 ? "" : "s")"
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
                 BuddyTheme.field.ignoresSafeArea()
                 Form {
+                    Section("Your kitchen") {
+                        NavigationLink {
+                            KitchenEditorScreen(mode: .editing)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Appliances")
+                                        .foregroundStyle(BuddyTheme.bone)
+                                    Text(kitchenSummary)
+                                        .font(.footnote)
+                                        .foregroundStyle(BuddyTheme.dim)
+                                }
+                                Spacer()
+                            }
+                        }
+                    }
+
                     Section("Daily energy") {
                         Stepper(
                             value: Binding(

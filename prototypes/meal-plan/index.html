@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buddy · Meal plan prototypes</title>
+  <style>
+    :root {
+      --field: #0B0B0C;
+      --canvas: #0A0A0B;
+      --bone: #E6E2DA;
+      --dim: #8A8580;
+      --needle: #E2452B;
+      --carrot: #E07A3A;
+      --leaf: #6B8F5A;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #111;
+      color: var(--bone);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    button:active { transform: scale(0.97); }
+    @media (prefers-reduced-motion: reduce) {
+      .enter, .stagger > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+      button:active { transform: none; }
+    }
+    .enter { animation: enterUp 280ms var(--ease-out) both; }
+    .stagger > * {
+      opacity: 0; transform: translateY(8px);
+      animation: enterUp 280ms var(--ease-out) forwards;
+    }
+    .stagger > *:nth-child(1) { animation-delay: 0ms; }
+    .stagger > *:nth-child(2) { animation-delay: 45ms; }
+    .stagger > *:nth-child(3) { animation-delay: 90ms; }
+    .stagger > *:nth-child(4) { animation-delay: 135ms; }
+    .stagger > *:nth-child(5) { animation-delay: 180ms; }
+    @keyframes enterUp { to { opacity: 1; transform: translateY(0); } }
+
+    .studio {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 56px 16px 96px;
+      background: radial-gradient(ellipse 80% 50% at 50% 0%, #1a1a1c 0%, transparent 55%), var(--canvas);
+    }
+    .studio-label {
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-bottom: 20px;
+      font-family: ui-monospace, Menlo, monospace;
+    }
+    .phone {
+      width: 390px; max-width: calc(100vw - 32px);
+      height: 780px; max-height: calc(100vh - 160px);
+      border-radius: 48px; background: #000; padding: 12px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 24px 80px rgba(0,0,0,0.55);
+    }
+    .phone-screen {
+      width: 100%; height: 100%; border-radius: 38px; overflow: hidden;
+      background: var(--field); position: relative; display: flex; flex-direction: column;
+    }
+    .status {
+      display: flex; justify-content: space-between;
+      padding: 14px 28px 6px; font-size: 14px; font-weight: 600; flex-shrink: 0;
+    }
+    .home-bar {
+      position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 4px; border-radius: 999px; background: rgba(230,226,218,0.35); z-index: 5;
+    }
+    #stage { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    #stage > .variant { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+    .tabbar {
+      display: flex; justify-content: space-around;
+      padding: 10px 8px 22px;
+      border-top: 1px solid rgba(230,226,218,0.08);
+      background: rgba(11,11,12,0.92);
+      backdrop-filter: blur(16px);
+      flex-shrink: 0;
+    }
+    .tab {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      font-size: 10px; color: var(--dim); min-width: 64px; padding: 4px;
+    }
+    .tab[data-on] { color: var(--bone); }
+    .tab svg { width: 22px; height: 22px; opacity: 0.85; }
+
+    .cta {
+      width: 100%; padding: 16px; border-radius: 16px;
+      background: var(--needle); color: var(--bone);
+      font-size: 16px; font-weight: 600;
+      transition: opacity 150ms ease-out;
+    }
+    .cta:hover { opacity: 0.92; }
+    .cta.secondary {
+      background: rgba(230,226,218,0.1);
+    }
+
+    /* Tonight */
+    .tn { padding: 8px 22px 0; flex: 1; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+    .tn-head { display: flex; align-items: flex-start; gap: 12px; }
+    .tn-head h1 { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+    .tn-head p { font-size: 14px; color: var(--dim); margin-top: 4px; line-height: 1.35; }
+    .budget {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 12px 14px; border-radius: 14px;
+      background: rgba(230,226,218,0.06);
+      outline: 1px solid rgba(255,255,255,0.06);
+      font-variant-numeric: tabular-nums;
+    }
+    .budget strong { font-size: 20px; }
+    .budget span { font-size: 13px; color: var(--dim); }
+    .slots { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-bottom: 8px; scrollbar-width: none; }
+    .slots::-webkit-scrollbar { display: none; }
+    .slot {
+      display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center;
+      padding: 12px; border-radius: 16px;
+      background: rgba(230,226,218,0.05);
+      outline: 1px solid rgba(255,255,255,0.07);
+      text-align: left; width: 100%;
+      transition: transform 160ms var(--ease-out), background 150ms ease-out;
+    }
+    .slot:active { transform: scale(0.985); }
+    .slot.done { outline-color: rgba(226,69,43,0.35); }
+    .slot-ico {
+      width: 56px; height: 56px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(230,226,218,0.08); font-size: 11px; color: var(--dim); font-weight: 600;
+    }
+    .slot.done .slot-ico { background: rgba(226,69,43,0.15); color: var(--needle); }
+    .slot h3 { font-size: 16px; font-weight: 600; }
+    .slot .meta { font-size: 12px; color: var(--dim); margin-top: 3px; }
+    .slot .kcal { font-size: 14px; color: var(--dim); font-variant-numeric: tabular-nums; }
+    .tn-actions { display: flex; flex-direction: column; gap: 8px; padding-bottom: 8px; }
+
+    /* Week */
+    .wk { padding: 8px 18px 0; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .wk h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .wk .sub { font-size: 13px; color: var(--dim); margin-bottom: 14px; }
+    .days {
+      display: flex; gap: 6px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none;
+    }
+    .days::-webkit-scrollbar { display: none; }
+    .day {
+      flex: 0 0 48px; height: 64px; border-radius: 14px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      background: rgba(230,226,218,0.05); color: var(--dim); font-size: 11px;
+      outline: 1px solid transparent;
+    }
+    .day strong { font-size: 16px; color: var(--bone); font-weight: 600; }
+    .day[data-on] {
+      background: rgba(226,69,43,0.15); color: var(--needle);
+      outline-color: rgba(226,69,43,0.4);
+    }
+    .day[data-on] strong { color: var(--bone); }
+    .wk-body { flex: 1; overflow-y: auto; scrollbar-width: none; }
+    .wk-body::-webkit-scrollbar { display: none; }
+    .meal-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 4px; border-bottom: 1px solid rgba(230,226,218,0.08);
+      width: 100%; text-align: left;
+    }
+    .meal-row .label { font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.05em; }
+    .meal-row .name { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .meal-row .empty { font-size: 15px; color: var(--dim); font-style: normal; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--needle); opacity: 0; }
+    .meal-row.filled .dot { opacity: 1; }
+
+    /* Plan & Log */
+    .pw { padding: 8px 22px 0; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .pw-head { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+    .pw-head h1 { font-size: 22px; font-weight: 600; }
+    .pw-head p { font-size: 13px; color: var(--dim); }
+    .plan-card {
+      border-radius: 18px; overflow: hidden; margin-bottom: 12px;
+      background: rgba(230,226,218,0.05);
+      outline: 1px solid rgba(255,255,255,0.08);
+      width: 100%; text-align: left;
+      transition: transform 160ms var(--ease-out);
+    }
+    .plan-card:active { transform: scale(0.985); }
+    .plan-card .ph {
+      height: 88px; display: flex; align-items: flex-end; padding: 12px;
+      background: linear-gradient(145deg, #2a2622, #141210);
+      font-size: 12px; color: var(--dim);
+    }
+    .plan-card.watched .ph {
+      background: linear-gradient(145deg, #3a2a24, #1a1210);
+      color: var(--bone);
+    }
+    .plan-card .bd { padding: 12px 14px 14px; }
+    .plan-card .bd h3 { font-size: 16px; font-weight: 600; }
+    .plan-card .bd .meta { font-size: 12px; color: var(--dim); margin-top: 4px; }
+    .badge {
+      display: inline-block; margin-top: 8px; font-size: 11px; font-weight: 600;
+      padding: 4px 8px; border-radius: 999px;
+      background: rgba(230,226,218,0.1); color: var(--dim);
+    }
+    .badge.on { background: rgba(226,69,43,0.15); color: var(--needle); }
+    .pw-list { flex: 1; overflow-y: auto; scrollbar-width: none; padding-bottom: 8px; }
+    .pw-list::-webkit-scrollbar { display: none; }
+
+    .toast {
+      position: absolute; top: 54px; left: 20px; right: 20px; z-index: 30;
+      padding: 12px 14px; border-radius: 14px;
+      background: rgba(20,20,20,0.92);
+      outline: 1px solid rgba(255,255,255,0.1);
+      font-size: 14px; display: flex; gap: 10px; align-items: center;
+      transform: translateY(-12px); opacity: 0; pointer-events: none;
+      transition: transform 280ms var(--ease-out), opacity 280ms var(--ease-out);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    .hint {
+      margin-top: 18px; font-size: 12px; color: rgba(255,255,255,0.35);
+      text-align: center; max-width: 440px; line-height: 1.45;
+    }
+
+    /* Picker — PICKER.md verbatim, top */
+    .proto-picker {
+      position: fixed; top: 24px; bottom: auto; left: 50%; transform: translateX(-50%);
+      z-index: 2147483647; display: flex; align-items: center; gap: 2px; padding: 4px;
+      border-radius: 999px; background: rgba(10, 10, 10, 0.82);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08) inset, 0 8px 24px rgba(0,0,0,0.24), 0 2px 6px rgba(0,0,0,0.12);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px; line-height: 1; user-select: none;
+    }
+    .proto-picker-highlight {
+      position: absolute; top: 4px; left: 0; height: 28px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); will-change: transform;
+    }
+    .proto-picker[data-ready] .proto-picker-highlight {
+      transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1), width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+    }
+    .proto-picker-item {
+      position: relative; display: flex; align-items: center; height: 28px; padding: 0 12px;
+      border: 0; border-radius: 999px; background: transparent; color: rgba(255,255,255,0.55);
+      font: inherit; cursor: pointer; transition: color 150ms ease-out;
+    }
+    .proto-picker-item:hover { color: rgba(255,255,255,0.85); }
+    .proto-picker-item:active { transform: scale(0.97); }
+    .proto-picker-item:focus-visible { outline: 2px solid rgba(255,255,255,0.4); outline-offset: 2px; }
+    .proto-picker-item[data-active] { color: #fff; }
+    .proto-picker-divider { width: 1px; height: 16px; margin: 0 4px; background: rgba(255,255,255,0.12); }
+    .proto-picker-replay { padding: 0 10px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <nav class="proto-picker" data-position="top" aria-label="Prototype variants">
+    <span class="proto-picker-highlight" aria-hidden="true"></span>
+    <button class="proto-picker-item">Tonight</button>
+    <button class="proto-picker-item">Week Strip</button>
+    <button class="proto-picker-item" data-active aria-current="true">Plan & Log</button>
+    <span class="proto-picker-divider" aria-hidden="true"></span>
+    <button class="proto-picker-item proto-picker-replay" aria-label="Replay animation (R)">↻</button>
+  </nav>
+
+  <div class="studio">
+    <div class="studio-label">Buddy · Meal plan · prototypes</div>
+    <div class="phone"><div class="phone-screen">
+      <div class="status"><span>9:41</span><span style="opacity:.85;font-size:11px">●●● ◐</span></div>
+      <div id="stage"></div>
+      <div class="home-bar"></div>
+    </div></div>
+    <p class="hint">Keys <kbd>1</kbd>–<kbd>3</kbd> · ← → · <kbd>R</kbd> · tap meals to plan / mark logged</p>
+  </div>
+
+  <script>
+    const GHOST = (s = 48) => `<svg width="${s}" height="${s*1.15}" viewBox="0 0 80 92" aria-hidden="true">
+      <ellipse cx="40" cy="88" rx="18" ry="3" fill="rgba(0,0,0,0.25)"/>
+      <path d="M8 42 Q40 -6 72 42 L72 68 Q60 88 50 68 Q40 88 30 68 Q20 88 8 68 Z" fill="#E6E2DA"/>
+      <ellipse cx="30" cy="40" rx="5" ry="7" fill="#0B0B0C"/>
+      <ellipse cx="50" cy="40" rx="5" ry="7" fill="#0B0B0C"/>
+      <rect x="34" y="52" width="12" height="3" rx="1.5" fill="#0B0B0C" opacity="0.45"/>
+      <circle cx="58" cy="48" r="4.5" fill="#E2452B"/>
+      <g transform="translate(36 58)">
+        <rect x="6" y="0" width="8" height="22" rx="4" fill="#E07A3A"/>
+        <rect x="7" y="-8" width="3" height="10" rx="1" fill="#6B8F5A"/>
+      </g>
+    </svg>`;
+
+    const TAB = (on) => `
+      <nav class="tabbar" aria-label="Buddy">
+        <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Today</div>
+        <div class="tab" ${on === 'plan' ? 'data-on' : ''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg>Plan</div>
+        <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M6 19c1.5-3 4-4.5 6-4.5S16.5 16 18 19"/></svg>Buddy</div>
+      </nav>`;
+
+    function toastEl(msg) {
+      return `<div class="toast" data-toast>${GHOST(26)}<span>${msg}</span></div>`;
+    }
+    function showToast(root, ms = 2000) {
+      const t = root.querySelector('[data-toast]');
+      if (!t) return;
+      t.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => t.classList.remove('show'), ms);
+    }
+
+    function tonight() {
+      const meals = [
+        { id: 'b', label: 'Breakfast', name: 'Eggs + toast', kcal: 420 },
+        { id: 'l', label: 'Lunch', name: 'Rice bowl', kcal: 560 },
+        { id: 'd', label: 'Dinner', name: 'Salmon + greens', kcal: 680 },
+        { id: 's', label: 'Snack', name: '— open', kcal: 0, empty: true },
+      ];
+      return `
+        <div class="variant tn">
+          <div class="tn-head enter">
+            ${GHOST(52)}
+            <div>
+              <h1>Tonight</h1>
+              <p>What’s up, bud? Here’s a day that fits ~2200.</p>
+            </div>
+          </div>
+          <div class="budget enter">
+            <div><strong data-planned>1660</strong> <span>planned</span></div>
+            <span>540 left for snacks</span>
+          </div>
+          <div class="slots stagger" data-slots>
+            ${meals.map(m => `
+              <button type="button" class="slot ${m.empty ? '' : 'done'}" data-id="${m.id}" data-kcal="${m.kcal}" data-empty="${!!m.empty}">
+                <div class="slot-ico">${m.label.slice(0,1)}</div>
+                <div>
+                  <h3 data-name>${m.name}</h3>
+                  <div class="meta">${m.label}</div>
+                </div>
+                <div class="kcal" data-k>${m.empty ? 'tap' : m.kcal}</div>
+              </button>`).join('')}
+          </div>
+          <div class="tn-actions enter">
+            <button type="button" class="cta" data-shuffle>Shuffle with Buddy</button>
+            <button type="button" class="cta secondary" data-to-watch>Log next plate</button>
+          </div>
+          ${toastEl('Plan updated.')}
+          ${TAB('plan')}
+        </div>`;
+    }
+
+    function wireTonight(root) {
+      const alts = {
+        b: [['Eggs + toast', 420], ['Greek yogurt bowl', 380], ['Oatmeal + banana', 350]],
+        l: [['Rice bowl', 560], ['Chicken wrap', 520], ['Noodle soup', 480]],
+        d: [['Salmon + greens', 680], ['Pasta + side salad', 720], ['Stir-fry tofu', 540]],
+        s: [['Apple + peanut butter', 220], ['Oat latte', 180], ['Dark chocolate', 150]],
+      };
+      let idx = { b: 0, l: 0, d: 0, s: -1 };
+      const recalc = () => {
+        let sum = 0;
+        root.querySelectorAll('.slot').forEach((s) => {
+          if (s.dataset.empty === 'true') return;
+          sum += parseInt(s.dataset.kcal, 10) || 0;
+        });
+        const el = root.querySelector('[data-planned]');
+        if (el) el.textContent = String(sum);
+      };
+      root.querySelectorAll('.slot').forEach((slot) => {
+        slot.addEventListener('click', () => {
+          const id = slot.dataset.id;
+          const list = alts[id];
+          idx[id] = (idx[id] + 1) % list.length;
+          const [name, kcal] = list[idx[id]];
+          slot.dataset.empty = 'false';
+          slot.dataset.kcal = kcal;
+          slot.classList.add('done');
+          slot.querySelector('[data-name]').textContent = name;
+          slot.querySelector('[data-k]').textContent = kcal;
+          recalc();
+          const t = root.querySelector('[data-toast] span');
+          if (t) t.textContent = `Got it — ${name}.`;
+          showToast(root);
+        });
+      });
+      root.querySelector('[data-shuffle]')?.addEventListener('click', () => {
+        root.querySelectorAll('.slot').forEach((slot) => slot.click());
+        const t = root.querySelector('[data-toast] span');
+        if (t) t.textContent = 'Shuffled. Still with you.';
+        showToast(root);
+      });
+      root.querySelector('[data-to-watch]')?.addEventListener('click', () => {
+        const t = root.querySelector('[data-toast] span');
+        if (t) t.textContent = 'Open Today → Log plate (prototype).';
+        showToast(root);
+      });
+    }
+
+    function weekStrip() {
+      const days = ['M','T','W','T','F','S','S'];
+      const dates = [22,23,24,25,26,27,28];
+      const plans = {
+        0: { b: 'Oats', l: 'Rice bowl', d: '' },
+        1: { b: 'Eggs', l: 'Salad', d: 'Salmon' },
+        2: { b: '', l: 'Wrap', d: 'Pasta' },
+        3: { b: 'Yogurt', l: '', d: '' },
+        4: { b: 'Toast', l: 'Bowl', d: 'Stir-fry' },
+        5: { b: '', l: '', d: 'Pizza night' },
+        6: { b: 'Brunch', l: '', d: 'Soup' },
+      };
+      return `
+        <div class="variant wk">
+          <div class="enter">
+            <h1>Week</h1>
+            <p class="sub">Tap a day · fill slots · Buddy keeps the energy budget honest.</p>
+          </div>
+          <div class="days stagger" data-days>
+            ${days.map((d,i) => `
+              <button type="button" class="day" data-i="${i}" ${i===1?'data-on':''}>
+                ${d}<strong>${dates[i]}</strong>
+              </button>`).join('')}
+          </div>
+          <div class="wk-body enter" data-body></div>
+          <div style="padding:10px 0 8px" class="enter">
+            <button type="button" class="cta" data-fill>Ask Buddy to fill empty slots</button>
+          </div>
+          ${toastEl('Day updated.')}
+          ${TAB('plan')}
+        </div>`;
+    }
+
+    function wireWeek(root) {
+      const plans = {
+        0: { b: 'Oats', l: 'Rice bowl', d: '' },
+        1: { b: 'Eggs', l: 'Salad', d: 'Salmon' },
+        2: { b: '', l: 'Wrap', d: 'Pasta' },
+        3: { b: 'Yogurt', l: '', d: '' },
+        4: { b: 'Toast', l: 'Bowl', d: 'Stir-fry' },
+        5: { b: '', l: '', d: 'Pizza night' },
+        6: { b: 'Brunch', l: '', d: 'Soup' },
+      };
+      let cur = 1;
+      const body = root.querySelector('[data-body]');
+      const render = () => {
+        const p = plans[cur];
+        const row = (key, label) => {
+          const name = p[key];
+          const filled = !!name;
+          return `<button type="button" class="meal-row ${filled?'filled':''}" data-slot="${key}">
+            <div>
+              <div class="label">${label}</div>
+              <div class="${filled?'name':'empty'}">${filled?name:'Add meal'}</div>
+            </div>
+            <div class="dot"></div>
+          </button>`;
+        };
+        body.innerHTML = row('b','Breakfast') + row('l','Lunch') + row('d','Dinner');
+        body.querySelectorAll('.meal-row').forEach((el) => {
+          el.addEventListener('click', () => {
+            const key = el.dataset.slot;
+            const ideas = { b: ['Eggs','Oats','Yogurt','Toast'], l: ['Salad','Rice bowl','Wrap','Soup'], d: ['Salmon','Pasta','Stir-fry','Pizza night'] };
+            const list = ideas[key];
+            const next = list[(list.indexOf(plans[cur][key]) + 1 + list.length) % list.length] || list[0];
+            plans[cur][key] = plans[cur][key] === next ? '' : (plans[cur][key] ? next : list[0]);
+            if (!plans[cur][key]) plans[cur][key] = list[0];
+            else {
+              const i = list.indexOf(plans[cur][key]);
+              plans[cur][key] = list[(i + 1) % list.length];
+            }
+            render();
+            showToast(root);
+          });
+        });
+      };
+      root.querySelectorAll('.day').forEach((d) => {
+        d.addEventListener('click', () => {
+          cur = +d.dataset.i;
+          root.querySelectorAll('.day').forEach((x) => x.toggleAttribute('data-on', x === d));
+          render();
+        });
+      });
+      root.querySelector('[data-fill]')?.addEventListener('click', () => {
+        const p = plans[cur];
+        if (!p.b) p.b = 'Eggs';
+        if (!p.l) p.l = 'Rice bowl';
+        if (!p.d) p.d = 'Salmon';
+        render();
+        const t = root.querySelector('[data-toast] span');
+        if (t) t.textContent = 'Filled empties. What’s up, bud?';
+        showToast(root);
+      });
+      render();
+    }
+
+    function planWatch() {
+      const items = [
+        { name: 'Rice bowl', when: 'Lunch · planned 560 kcal', watched: false },
+        { name: 'Salmon + greens', when: 'Dinner · planned 680 kcal', watched: false },
+        { name: 'Oat latte', when: 'Snack · planned 180 kcal', watched: true },
+      ];
+      return `
+        <div class="variant pw">
+          <div class="pw-head enter">
+            ${GHOST(48)}
+            <div>
+              <h1>Plan & Log</h1>
+              <p>Plan the meal. Snap it when it’s real.</p>
+            </div>
+          </div>
+          <div class="pw-list stagger" data-list>
+            ${items.map((it,i) => `
+              <button type="button" class="plan-card ${it.watched?'watched':''}" data-i="${i}">
+                <div class="ph">${it.watched ? 'Logged plate' : 'Planned · awaiting photo'}</div>
+                <div class="bd">
+                  <h3>${it.name}</h3>
+                  <div class="meta">${it.when}</div>
+                  <span class="badge ${it.watched?'on':''}">${it.watched?'Logged':'Snap to log'}</span>
+                </div>
+              </button>`).join('')}
+          </div>
+          <div style="padding:8px 0" class="enter">
+            <button type="button" class="cta" data-add>+ Plan a meal</button>
+          </div>
+          ${toastEl('Logged — XP incoming.')}
+          ${TAB('plan')}
+        </div>`;
+    }
+
+    function wirePlanWatch(root) {
+      const state = [
+        { name: 'Rice bowl', when: 'Lunch · planned 560 kcal', watched: false },
+        { name: 'Salmon + greens', when: 'Dinner · planned 680 kcal', watched: false },
+        { name: 'Oat latte', when: 'Snack · planned 180 kcal', watched: true },
+      ];
+      const list = root.querySelector('[data-list]');
+      const paint = () => {
+        list.innerHTML = state.map((it,i) => `
+          <button type="button" class="plan-card ${it.watched?'watched':''}" data-i="${i}">
+            <div class="ph">${it.watched ? 'Logged plate' : 'Planned · awaiting photo'}</div>
+            <div class="bd">
+              <h3>${it.name}</h3>
+              <div class="meta">${it.when}</div>
+              <span class="badge ${it.watched?'on':''}">${it.watched?'Logged':'Snap to log'}</span>
+            </div>
+          </button>`).join('');
+        list.querySelectorAll('.plan-card').forEach((card) => {
+          card.addEventListener('click', () => {
+            const i = +card.dataset.i;
+            state[i].watched = !state[i].watched;
+            paint();
+            const t = root.querySelector('[data-toast] span');
+            if (t) t.textContent = state[i].watched ? `Logged ${state[i].name}.` : 'Back to planned.';
+            showToast(root);
+          });
+        });
+      };
+      root.querySelector('[data-add]')?.addEventListener('click', () => {
+        state.unshift({ name: 'New plate', when: 'Snack · planned 200 kcal', watched: false });
+        paint();
+        const t = root.querySelector('[data-toast] span');
+        if (t) t.textContent = 'Added. Snap it when it’s real.';
+        showToast(root);
+      });
+      paint();
+    }
+
+    const variants = [tonight, weekStrip, planWatch];
+    const wirers = [wireTonight, wireWeek, wirePlanWatch];
+
+    const stage = document.getElementById('stage');
+    const picker = document.querySelector('.proto-picker');
+    const highlight = picker.querySelector('.proto-picker-highlight');
+    const items = [...picker.querySelectorAll('.proto-picker-item:not(.proto-picker-replay)')];
+    const replay = picker.querySelector('.proto-picker-replay');
+    let current = 0;
+
+    function moveHighlight() {
+      const el = items[current];
+      highlight.style.width = el.offsetWidth + 'px';
+      highlight.style.transform = `translateX(${el.offsetLeft}px)`;
+    }
+    function mount(i) {
+      stage.innerHTML = '';
+      requestAnimationFrame(() => {
+        stage.innerHTML = variants[i]();
+        wirers[i](stage.querySelector('.variant'));
+      });
+    }
+    function setActive(i) {
+      if (i < 0 || i >= variants.length) return;
+      current = i;
+      items.forEach((el, j) => {
+        el.toggleAttribute('data-active', j === i);
+        if (j === i) el.setAttribute('aria-current', 'true');
+        else el.removeAttribute('aria-current');
+      });
+      moveHighlight();
+      const url = new URL(location);
+      url.searchParams.set('v', i + 1);
+      history.replaceState(null, '', url);
+      mount(i);
+    }
+    items.forEach((el, i) => el.addEventListener('click', () => setActive(i)));
+    replay?.addEventListener('click', () => mount(current));
+    window.addEventListener('resize', moveHighlight);
+    document.addEventListener('keydown', (e) => {
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const num = parseInt(e.key, 10);
+      if (num >= 1 && num <= variants.length) setActive(num - 1);
+      else if (e.key === 'ArrowRight') setActive((current + 1) % variants.length);
+      else if (e.key === 'ArrowLeft') setActive((current - 1 + variants.length) % variants.length);
+      else if (e.key === 'r' || e.key === 'R') mount(current);
+    });
+    setActive((parseInt(new URLSearchParams(location.search).get('v'), 10) || 3) - 1);
+    requestAnimationFrame(() => requestAnimationFrame(() => picker.setAttribute('data-ready', '')));
+  </script>
+</body>
+</html>

@@ -7,22 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02640606DCB561B517BE7D9B /* AddApplianceShelfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990A48DFC2690FB47C9B98B /* AddApplianceShelfView.swift */; };
+		03403D2CD58B2E061A40A6D5 /* BuddyTalkBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB45A60DE83554F72BAE07F /* BuddyTalkBeat.swift */; };
+		14F719C0949759B9993A74EC /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7D6BE8EAAA4FFF8F3DC6F5 /* ChatView.swift */; };
 		1725F90249448D4F12959E02 /* DeviceAIReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */; };
+		279319F566070AEFE0E9B5FF /* BuddyReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F57C157C57FE0D868ABAF5 /* BuddyReflection.swift */; };
+		2A72CE468953BCB24958B9CE /* KitchenAppliance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE27277D6E8442B70DBD910 /* KitchenAppliance.swift */; };
+		2D2CF0D8D05A36C555F634F7 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC4950C205C0C533211C0A /* MainTabView.swift */; };
 		2F1684D1001F705A34CBFD4B /* PlateVisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */; };
 		40F608137B08797BF7ABBCB3 /* PlatePhotoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */; };
 		42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F34F47FBC5CFBEC7BDCE065 /* BuddyApp.swift */; };
 		59DE431B45BB621CF7D5A965 /* MealWatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5577077689CF31466357F59 /* MealWatchService.swift */; };
+		6BA2758B82A9638D0BEB7042 /* KitchenCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69E9A9325F389C349CD4240 /* KitchenCounterView.swift */; };
+		732D223F5EE45CE40EA1A93A /* KitchenEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */; };
 		78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AD187AC8B14EBA55B03E /* RootView.swift */; };
+		989388E464E88851B4046493 /* BuddyChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */; };
 		9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */; };
 		A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */; };
 		A4689C5AB25E8274CD6A728D /* BuddySchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2931273B517A6C5C03E0EA20 /* BuddySchema.swift */; };
 		ACBD9A7C9492ED327DCF3037 /* MealWatchBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC4955B8D538B486C868142 /* MealWatchBeat.swift */; };
+		B95AE6A76376F5536A13B963 /* BuddyGhostPixels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F84F4D6D58312685ABCCA /* BuddyGhostPixels.swift */; };
 		C130C146EC8350CF3CBE1991 /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124B3EE25AFA5503FA94B6B4 /* TodayView.swift */; };
+		C6D4E4ADC8FFB7A8064C36AE /* PixelRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AA129DB70A7F51A9B1BBFC /* PixelRenderer.swift */; };
 		CA5ADF92F69329CFA25092CE /* BuddyPeerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */; };
 		D68109C8EEF80DCE79F3851B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */; };
 		DEC384F3948225A805D531AD /* BuddyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9727837F6086123DA15398 /* BuddyTests.swift */; };
 		E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F8A66902028F1C6D9B18E /* BuddyModelContainer.swift */; };
+		E3B2358283F939CD9B1E609D /* KitchenApplianceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5564F04E79584C20154DC6D9 /* KitchenApplianceDetailSheet.swift */; };
 		F01D40E818ABD1CA267464B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */; };
+		F14496F4D913FD7A026D9527 /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA583A925A3A8A61EE86FB5 /* PlanView.swift */; };
+		F2E03A3C3B7A515887ACFA05 /* PlanAndChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A1A32944EAB7B4C77692A5 /* PlanAndChat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,19 +55,33 @@
 		156196AE7079F82F5DEAF7F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1632AD187AC8B14EBA55B03E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatePhotoCapture.swift; sourceTree = "<group>"; };
+		2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyChatService.swift; sourceTree = "<group>"; };
 		2931273B517A6C5C03E0EA20 /* BuddySchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddySchema.swift; sourceTree = "<group>"; };
 		38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPeerBase.swift; sourceTree = "<group>"; };
+		39F57C157C57FE0D868ABAF5 /* BuddyReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyReflection.swift; sourceTree = "<group>"; };
 		472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateVisionService.swift; sourceTree = "<group>"; };
 		49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		4DA583A925A3A8A61EE86FB5 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		4F0F8A66902028F1C6D9B18E /* BuddyModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyModelContainer.swift; sourceTree = "<group>"; };
 		51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPlateSheet.swift; sourceTree = "<group>"; };
+		5564F04E79584C20154DC6D9 /* KitchenApplianceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenApplianceDetailSheet.swift; sourceTree = "<group>"; };
+		58A1A32944EAB7B4C77692A5 /* PlanAndChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanAndChat.swift; sourceTree = "<group>"; };
+		748F84F4D6D58312685ABCCA /* BuddyGhostPixels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyGhostPixels.swift; sourceTree = "<group>"; };
+		7990A48DFC2690FB47C9B98B /* AddApplianceShelfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddApplianceShelfView.swift; sourceTree = "<group>"; };
 		7E9727837F6086123DA15398 /* BuddyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTests.swift; sourceTree = "<group>"; };
 		8BE6426EC12149C808484799 /* Buddy.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Buddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CB45A60DE83554F72BAE07F /* BuddyTalkBeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyTalkBeat.swift; sourceTree = "<group>"; };
 		8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceAIReadiness.swift; sourceTree = "<group>"; };
 		9F34F47FBC5CFBEC7BDCE065 /* BuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyApp.swift; sourceTree = "<group>"; };
+		A69E9A9325F389C349CD4240 /* KitchenCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenCounterView.swift; sourceTree = "<group>"; };
+		B0AA129DB70A7F51A9B1BBFC /* PixelRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelRenderer.swift; sourceTree = "<group>"; };
 		B62ADAFAFF48938BEF43E220 /* BuddyTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6AC4950C205C0C533211C0A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BE7D6BE8EAAA4FFF8F3DC6F5 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		BEC4955B8D538B486C868142 /* MealWatchBeat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWatchBeat.swift; sourceTree = "<group>"; };
+		BEE27277D6E8442B70DBD910 /* KitchenAppliance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenAppliance.swift; sourceTree = "<group>"; };
 		C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenEditorScreen.swift; sourceTree = "<group>"; };
 		E5577077689CF31466357F59 /* MealWatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWatchService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,14 +103,26 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		9ACC8F326BE18313560977FE /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				748F84F4D6D58312685ABCCA /* BuddyGhostPixels.swift */,
+			);
+			path = Sprites;
+			sourceTree = "<group>";
+		};
 		A24A8F8CE15D32470B48D341 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE7D6BE8EAAA4FFF8F3DC6F5 /* ChatView.swift */,
+				B6AC4950C205C0C533211C0A /* MainTabView.swift */,
+				4DA583A925A3A8A61EE86FB5 /* PlanView.swift */,
 				2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */,
 				1632AD187AC8B14EBA55B03E /* RootView.swift */,
 				49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */,
 				124B3EE25AFA5503FA94B6B4 /* TodayView.swift */,
 				51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */,
+				ADA2C5690C4D45E96B59C108 /* Kitchen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,9 +131,21 @@
 			isa = PBXGroup;
 			children = (
 				38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */,
+				8CB45A60DE83554F72BAE07F /* BuddyTalkBeat.swift */,
 				BEC4955B8D538B486C868142 /* MealWatchBeat.swift */,
 			);
 			path = CompanionBeats;
+			sourceTree = "<group>";
+		};
+		ADA2C5690C4D45E96B59C108 /* Kitchen */ = {
+			isa = PBXGroup;
+			children = (
+				7990A48DFC2690FB47C9B98B /* AddApplianceShelfView.swift */,
+				5564F04E79584C20154DC6D9 /* KitchenApplianceDetailSheet.swift */,
+				A69E9A9325F389C349CD4240 /* KitchenCounterView.swift */,
+				D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */,
+			);
+			path = Kitchen;
 			sourceTree = "<group>";
 		};
 		B784DEB52F1BFBBCE73EC44D /* Buddy */ = {
@@ -102,8 +154,10 @@
 				C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */,
 				156196AE7079F82F5DEAF7F6 /* Info.plist */,
 				7AE35FABDB2311D4E1B0719A /* App */,
+				CB4CFB6CE794C5EFE40F8950 /* Core */,
 				DA42F27D81A625BCEEF226A7 /* Models */,
 				D7907F4BBA1BE8A850E794EB /* Services */,
+				9ACC8F326BE18313560977FE /* Sprites */,
 				DB575FEDD4BDCC6D786F7C2F /* Theme */,
 				A24A8F8CE15D32470B48D341 /* Views */,
 			);
@@ -119,9 +173,18 @@
 			);
 			sourceTree = "<group>";
 		};
+		CB4CFB6CE794C5EFE40F8950 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B0AA129DB70A7F51A9B1BBFC /* PixelRenderer.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		D7907F4BBA1BE8A850E794EB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */,
 				8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */,
 				E5577077689CF31466357F59 /* MealWatchService.swift */,
 				472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */,
@@ -133,7 +196,10 @@
 		DA42F27D81A625BCEEF226A7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				39F57C157C57FE0D868ABAF5 /* BuddyReflection.swift */,
 				2931273B517A6C5C03E0EA20 /* BuddySchema.swift */,
+				BEE27277D6E8442B70DBD910 /* KitchenAppliance.swift */,
+				58A1A32944EAB7B4C77692A5 /* PlanAndChat.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,14 +321,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02640606DCB561B517BE7D9B /* AddApplianceShelfView.swift in Sources */,
 				42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */,
+				989388E464E88851B4046493 /* BuddyChatService.swift in Sources */,
+				B95AE6A76376F5536A13B963 /* BuddyGhostPixels.swift in Sources */,
 				E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */,
 				CA5ADF92F69329CFA25092CE /* BuddyPeerBase.swift in Sources */,
+				279319F566070AEFE0E9B5FF /* BuddyReflection.swift in Sources */,
 				A4689C5AB25E8274CD6A728D /* BuddySchema.swift in Sources */,
+				03403D2CD58B2E061A40A6D5 /* BuddyTalkBeat.swift in Sources */,
 				A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */,
+				14F719C0949759B9993A74EC /* ChatView.swift in Sources */,
 				1725F90249448D4F12959E02 /* DeviceAIReadiness.swift in Sources */,
+				2A72CE468953BCB24958B9CE /* KitchenAppliance.swift in Sources */,
+				E3B2358283F939CD9B1E609D /* KitchenApplianceDetailSheet.swift in Sources */,
+				6BA2758B82A9638D0BEB7042 /* KitchenCounterView.swift in Sources */,
+				732D223F5EE45CE40EA1A93A /* KitchenEditorScreen.swift in Sources */,
+				2D2CF0D8D05A36C555F634F7 /* MainTabView.swift in Sources */,
 				ACBD9A7C9492ED327DCF3037 /* MealWatchBeat.swift in Sources */,
 				59DE431B45BB621CF7D5A965 /* MealWatchService.swift in Sources */,
+				C6D4E4ADC8FFB7A8064C36AE /* PixelRenderer.swift in Sources */,
+				F2E03A3C3B7A515887ACFA05 /* PlanAndChat.swift in Sources */,
+				F14496F4D913FD7A026D9527 /* PlanView.swift in Sources */,
 				40F608137B08797BF7ABBCB3 /* PlatePhotoCapture.swift in Sources */,
 				2F1684D1001F705A34CBFD4B /* PlateVisionService.swift in Sources */,
 				78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */,
@@ -295,7 +375,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy watches your plate photo on-device to estimate energy and keep your day visible.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses a plate photo on-device to estimate energy when you log a meal.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,7 +528,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy watches your plate photo on-device to estimate energy and keep your day visible.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses a plate photo on-device to estimate energy when you log a meal.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

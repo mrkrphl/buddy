@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buddy · Today prototypes</title>
+  <style>
+    :root {
+      --field: #0B0B0C;
+      --canvas: #0A0A0B;
+      --bone: #E6E2DA;
+      --dim: #8A8580;
+      --needle: #E2452B;
+      --carrot: #E07A3A;
+      --leaf: #6B8F5A;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      min-height: 100%;
+      background: #111;
+      color: var(--bone);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .studio {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px 96px;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, #1a1a1c 0%, transparent 55%),
+        var(--canvas);
+    }
+
+    .studio-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    /* iPhone frame */
+    .phone {
+      width: 390px;
+      max-width: calc(100vw - 32px);
+      height: 780px;
+      max-height: calc(100vh - 160px);
+      border-radius: 48px;
+      background: #000;
+      padding: 12px;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 24px 80px rgba(0,0,0,0.55);
+      position: relative;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 38px;
+      overflow: hidden;
+      background: var(--field);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .status {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 28px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--bone);
+      flex-shrink: 0;
+    }
+    .status-icons { opacity: 0.85; letter-spacing: 2px; font-size: 11px; }
+    .home-bar {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(230,226,218,0.35);
+      z-index: 5;
+    }
+
+    #stage { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    #stage > .variant { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+    button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+    button:active { transform: scale(0.97); }
+    @media (prefers-reduced-motion: reduce) {
+      .enter, .stagger > * { animation: none !important; opacity: 1 !important; transform: none !important; }
+      button:active { transform: none; }
+    }
+
+    .enter {
+      animation: enterUp 280ms var(--ease-out) both;
+    }
+    .stagger > *:nth-child(1) { animation-delay: 0ms; }
+    .stagger > *:nth-child(2) { animation-delay: 50ms; }
+    .stagger > *:nth-child(3) { animation-delay: 100ms; }
+    .stagger > *:nth-child(4) { animation-delay: 150ms; }
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: enterUp 280ms var(--ease-out) forwards;
+    }
+    @keyframes enterUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Shared ghost SVG */
+    .ghost {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* ——— Quiet Ring ——— */
+    .qr { padding: 8px 24px 28px; flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    .qr-top { display: flex; justify-content: space-between; align-items: center; }
+    .qr-top .meta { font-size: 12px; color: var(--dim); }
+    .qr-chips { display: flex; gap: 8px; }
+    .chip {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--needle);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(226,69,43,0.12);
+    }
+    .qr-ring-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .ring {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+    .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-track { fill: none; stroke: rgba(230,226,218,0.12); stroke-width: 10; }
+    .ring-fill {
+      fill: none;
+      stroke: var(--bone);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-dasharray: 565;
+      stroke-dashoffset: 200;
+      transition: stroke-dashoffset 400ms var(--ease-out);
+    }
+    .ring-fill.over { stroke: var(--needle); }
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(0);
+    }
+    .ring-center .kcal {
+      font-size: 36px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+    }
+    .ring-center .of { font-size: 13px; color: var(--dim); margin-top: 2px; }
+    .qr-plates { width: 100%; }
+    .qr-plates h3 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dim);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .qr-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-top: 1px solid rgba(230,226,218,0.08);
+      font-size: 15px;
+    }
+    .qr-row .c { color: var(--dim); font-variant-numeric: tabular-nums; }
+    .cta {
+      width: 100%;
+      padding: 16px;
+      border-radius: 16px;
+      background: var(--needle);
+      color: var(--bone);
+      font-size: 17px;
+      font-weight: 600;
+      transition: transform 100ms ease-out, opacity 150ms ease-out;
+    }
+    .cta:hover { opacity: 0.92; }
+
+    /* ——— Ghost Room ——— */
+    .gr {
+      padding: 4px 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .gr-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+      padding-bottom: 8px;
+    }
+    .gr-ghost-wrap {
+      width: 140px;
+      height: 150px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .gr-ghost-wrap .float {
+      transform-origin: bottom center;
+      animation: ghostIdle 2.9s ease-in-out infinite;
+    }
+    @keyframes ghostIdle {
+      0%, 100% { transform: translate(0, 0) rotate(-1.2deg) scale(1.01, 0.985); }
+      35% { transform: translate(2px, -8px) rotate(1.6deg) scale(0.99, 1.02); }
+      70% { transform: translate(-2px, -4px) rotate(-0.8deg) scale(1.005, 1.01); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gr-ghost-wrap .float { animation: none; }
+    }
+    .gr-hello {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .gr-bubble {
+      max-width: 280px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(230,226,218,0.08);
+      font-size: 15px;
+      line-height: 1.35;
+      color: var(--bone);
+      outline: 1px solid rgba(255,255,255,0.06);
+    }
+    .gr-bar {
+      width: 100%;
+      margin: 16px 0 8px;
+    }
+    .gr-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--dim);
+      margin-bottom: 6px;
+      font-variant-numeric: tabular-nums;
+    }
+    .gr-bar-track {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(230,226,218,0.12);
+      overflow: hidden;
+    }
+    .gr-bar-fill {
+      height: 100%;
+      width: 64%;
+      border-radius: 999px;
+      background: var(--bone);
+      transition: width 400ms var(--ease-out);
+    }
+    .gr-strip {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 0 16px;
+      scrollbar-width: none;
+    }
+    .gr-strip::-webkit-scrollbar { display: none; }
+    .gr-thumb {
+      flex: 0 0 72px;
+      height: 72px;
+      border-radius: 12px;
+      background: rgba(230,226,218,0.08);
+      outline: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: flex-end;
+      padding: 6px;
+      font-size: 10px;
+      color: var(--dim);
+      background-size: cover;
+      background-position: center;
+    }
+    .gr-thumb.t1 { background-image: linear-gradient(135deg, #3a3228, #1a1814); }
+    .gr-thumb.t2 { background-image: linear-gradient(135deg, #2a3a28, #141814); }
+    .gr-thumb.t3 { background-image: linear-gradient(135deg, #3a2a22, #181412); }
+
+    /* ——— Plate Feed ——— */
+    .pf { padding: 4px 20px 28px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .pf-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 12px;
+    }
+    .pf-head h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; }
+    .pf-head .sub { font-size: 13px; color: var(--dim); font-variant-numeric: tabular-nums; }
+    .pf-feed {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 72px;
+      scrollbar-width: none;
+    }
+    .pf-feed::-webkit-scrollbar { display: none; }
+    .pf-card {
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(230,226,218,0.05);
+      outline: 1px solid rgba(255,255,255,0.08);
+      transition: transform 160ms var(--ease-out);
+    }
+    .pf-card:active { transform: scale(0.985); }
+    .pf-photo {
+      height: 140px;
+      background-size: cover;
+      background-position: center;
+    }
+    .pf-photo.p1 { background-image: linear-gradient(160deg, #4a3c30 0%, #1c1814 100%); }
+    .pf-photo.p2 { background-image: linear-gradient(160deg, #3a4a32 0%, #141814 100%); }
+    .pf-photo.p3 { background-image: linear-gradient(160deg, #4a3830 0%, #181412 100%); }
+    .pf-body { padding: 12px 14px 14px; }
+    .pf-body .title { font-size: 16px; font-weight: 600; }
+    .pf-body .kcal { font-size: 13px; color: var(--dim); margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .pf-body .line { font-size: 13px; color: var(--dim); margin-top: 6px; line-height: 1.35; }
+    .pf-fab {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--needle);
+      color: var(--bone);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(226,69,43,0.35);
+      transition: transform 100ms ease-out;
+      z-index: 4;
+    }
+    .pf-fab:active { transform: translateX(-50%) scale(0.96); }
+    .pf-fab svg { width: 26px; height: 26px; }
+
+    /* Sheet overlay */
+    .sheet-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 20;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms var(--ease-out);
+    }
+    .sheet-scrim.open { opacity: 1; pointer-events: auto; }
+    .sheet {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      z-index: 21;
+      background: #141414;
+      border-radius: 24px 24px 0 0;
+      padding: 12px 20px 36px;
+      transform: translateY(105%);
+      transition: transform 320ms cubic-bezier(0.32, 0.72, 0, 1);
+      outline: 1px solid rgba(255,255,255,0.08);
+    }
+    .sheet.open { transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .sheet { transition: opacity 200ms ease; transform: none; opacity: 0; }
+      .sheet.open { opacity: 1; }
+    }
+    .sheet-handle {
+      width: 36px; height: 4px; border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+      margin: 4px auto 16px;
+    }
+    .sheet h2 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .sheet p { font-size: 14px; color: var(--dim); margin-bottom: 16px; line-height: 1.4; }
+    .sheet .preview {
+      height: 120px; border-radius: 16px;
+      background: linear-gradient(145deg, #3a3228, #1a1612);
+      outline: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dim); font-size: 13px;
+    }
+    .sheet-actions { display: flex; gap: 10px; }
+    .sheet-actions .cta { flex: 1; }
+    .sheet-actions .ghost-btn {
+      flex: 0 0 auto;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(230,226,218,0.08);
+      color: var(--bone);
+      font-weight: 600;
+    }
+
+    /* Toast */
+    .toast {
+      position: absolute;
+      top: 54px;
+      left: 20px; right: 20px;
+      z-index: 30;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(20,20,20,0.92);
+      outline: 1px solid rgba(255,255,255,0.1);
+      font-size: 14px;
+      display: flex; gap: 10px; align-items: center;
+      transform: translateY(-12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 280ms var(--ease-out), opacity 280ms var(--ease-out);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* Picker — verbatim from PICKER.md */
+    .proto-picker {
+      position: fixed;
+      bottom: auto;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(10, 10, 10, 0.82);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      backdrop-filter: blur(12px) saturate(1.4);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+        0 8px 24px rgba(0, 0, 0, 0.24),
+        0 2px 6px rgba(0, 0, 0, 0.12);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .proto-picker-highlight {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      will-change: transform;
+    }
+    .proto-picker[data-ready] .proto-picker-highlight {
+      transition:
+        transform 250ms cubic-bezier(0.23, 1, 0.32, 1),
+        width 250ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .proto-picker[data-ready] .proto-picker-highlight { transition: none; }
+    }
+    .proto-picker-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 28px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.55);
+      font: inherit;
+      cursor: pointer;
+      transition: color 150ms ease-out;
+    }
+    .proto-picker-item:hover { color: rgba(255, 255, 255, 0.85); }
+    .proto-picker-item:active { transform: scale(0.97); }
+    .proto-picker-item:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.4);
+      outline-offset: 2px;
+    }
+    .proto-picker-item[data-active] { color: #fff; }
+    .proto-picker-divider {
+      width: 1px;
+      height: 16px;
+      margin: 0 4px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .proto-picker-replay { padding: 0 10px; font-size: 14px; }
+
+    .hint {
+      margin-top: 18px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      max-width: 420px;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <nav class="proto-picker" data-position="top" aria-label="Prototype variants">
+    <span class="proto-picker-highlight" aria-hidden="true"></span>
+    <button class="proto-picker-item" data-active aria-current="true">Quiet Ring</button>
+    <button class="proto-picker-item">Ghost Room</button>
+    <button class="proto-picker-item">Plate Feed</button>
+    <span class="proto-picker-divider" aria-hidden="true"></span>
+    <button class="proto-picker-item proto-picker-replay" aria-label="Replay animation (R)">↻</button>
+  </nav>
+
+  <div class="studio">
+    <div class="studio-label">Buddy · Today · prototypes</div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="status"><span>9:41</span><span class="status-icons">●●● ◐</span></div>
+        <div id="stage"></div>
+        <div class="home-bar" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="hint">Keys <kbd>1</kbd>–<kbd>3</kbd> · ← → · <kbd>R</kbd> replay · tap Log / camera to open sheet</p>
+  </div>
+
+  <script>
+    const GHOST = (size = 64) => `
+      <svg class="ghost" width="${size}" height="${size * 1.15}" viewBox="0 0 80 92" aria-hidden="true">
+        <ellipse cx="40" cy="88" rx="18" ry="3" fill="rgba(0,0,0,0.25)"/>
+        <path d="M8 42 Q40 -6 72 42 L72 68 Q60 88 50 68 Q40 88 30 68 Q20 88 8 68 Z" fill="#E6E2DA"/>
+        <ellipse cx="30" cy="40" rx="5" ry="7" fill="#0B0B0C"/>
+        <ellipse cx="50" cy="40" rx="5" ry="7" fill="#0B0B0C"/>
+        <rect x="34" y="52" width="12" height="3" rx="1.5" fill="#0B0B0C" opacity="0.45"/>
+        <circle cx="58" cy="48" r="4.5" fill="#E2452B"/>
+        <g transform="translate(36 58)">
+          <rect x="6" y="0" width="8" height="22" rx="4" fill="#E07A3A"/>
+          <rect x="7" y="-8" width="3" height="10" rx="1" fill="#6B8F5A"/>
+          <rect x="11" y="-6" width="3" height="8" rx="1" fill="#6B8F5A" transform="rotate(20 12.5 -2)"/>
+          <rect x="3" y="-6" width="3" height="8" rx="1" fill="#6B8F5A" transform="rotate(-20 4.5 -2)"/>
+        </g>
+      </svg>`;
+
+    const CAM = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h3l2-2h6l2 2h3v11H4V8z"/><circle cx="12" cy="13" r="3.5"/></svg>`;
+
+    function sheetHTML(line) {
+      return `
+        <div class="sheet-scrim" data-scrim></div>
+        <div class="sheet" data-sheet role="dialog" aria-label="Log plate">
+          <div class="sheet-handle"></div>
+          <h2>Log plate</h2>
+          <p>${line}</p>
+          <div class="preview">Plate photo · on-device estimate</div>
+          <div class="sheet-actions">
+            <button type="button" class="ghost-btn" data-close>Close</button>
+            <button type="button" class="cta" data-log>Log · +15 XP</button>
+          </div>
+        </div>
+        <div class="toast" data-toast>${GHOST(28)} <span>Logged. What’s up, bud?</span></div>
+      `;
+    }
+
+    function wireSheet(root) {
+      const scrim = root.querySelector('[data-scrim]');
+      const sheet = root.querySelector('[data-sheet]');
+      const toast = root.querySelector('[data-toast]');
+      const openers = root.querySelectorAll('[data-open-watch]');
+      const close = () => {
+        scrim.classList.remove('open');
+        sheet.classList.remove('open');
+      };
+      const open = () => {
+        scrim.classList.add('open');
+        sheet.classList.add('open');
+      };
+      openers.forEach((el) => el.addEventListener('click', open));
+      scrim.addEventListener('click', close);
+      root.querySelector('[data-close]')?.addEventListener('click', close);
+      root.querySelector('[data-log]')?.addEventListener('click', () => {
+        close();
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+
+    function quietRing() {
+      return `
+        <div class="variant qr">
+          <div class="qr-top enter">
+            <div style="display:flex;align-items:center;gap:10px">
+              ${GHOST(36)}
+              <div>
+                <div style="font-weight:600;font-size:15px">Buddy</div>
+                <div class="meta">Lv 3 · 2d streak</div>
+              </div>
+            </div>
+            <div class="qr-chips"><span class="chip">48 XP</span></div>
+          </div>
+          <div class="qr-ring-wrap stagger">
+            <div class="ring">
+              <svg viewBox="0 0 200 200">
+                <circle class="ring-track" cx="100" cy="100" r="90"/>
+                <circle class="ring-fill" cx="100" cy="100" r="90"/>
+              </svg>
+              <div class="ring-center">
+                <div class="kcal">1420</div>
+                <div class="of">/ 2200 kcal</div>
+              </div>
+            </div>
+            <div class="qr-plates" style="width:100%">
+              <h3>Plates</h3>
+              <div class="qr-row"><span>Rice bowl</span><span class="c">520</span></div>
+              <div class="qr-row"><span>Salad</span><span class="c">280</span></div>
+              <div class="qr-row"><span>Oat latte</span><span class="c">180</span></div>
+            </div>
+          </div>
+          <button type="button" class="cta enter" data-open-watch>Log plate</button>
+          ${sheetHTML('Snap a plate — Buddy estimates energy on-device.')}
+        </div>`;
+    }
+
+    function ghostRoom() {
+      return `
+        <div class="variant gr">
+          <div class="gr-hero stagger">
+            <div class="gr-ghost-wrap"><div class="float">${GHOST(130)}</div></div>
+            <div class="gr-hello">What’s up, bud?</div>
+            <div class="gr-bubble">1420 kcal so far — still with you. Three plates on the board.</div>
+            <div class="gr-bar">
+              <div class="gr-bar-label"><span>Today</span><span>1420 / 2200</span></div>
+              <div class="gr-bar-track"><div class="gr-bar-fill"></div></div>
+            </div>
+          </div>
+          <div class="gr-strip enter">
+            <div class="gr-thumb t1">520</div>
+            <div class="gr-thumb t2">280</div>
+            <div class="gr-thumb t3">180</div>
+            <div class="gr-thumb" style="align-items:center;justify-content:center;color:var(--needle);font-size:22px" data-open-watch>+</div>
+          </div>
+          <button type="button" class="cta" data-open-watch>Log plate</button>
+          ${sheetHTML('I’ve been floating over this one — ready when you are.')}
+        </div>`;
+    }
+
+    function plateFeed() {
+      return `
+        <div class="variant pf" style="position:relative">
+          <div class="pf-head enter">
+            ${GHOST(40)}
+            <div>
+              <h1>Today</h1>
+              <div class="sub">1420 kcal · 3 plates</div>
+            </div>
+          </div>
+          <div class="pf-feed stagger">
+            <article class="pf-card">
+              <div class="pf-photo p1"></div>
+              <div class="pf-body">
+                <div class="title">Rice bowl</div>
+                <div class="kcal">520 kcal · P22 · C68 · F14</div>
+                <div class="line">Looking solid on this plate.</div>
+              </div>
+            </article>
+            <article class="pf-card">
+              <div class="pf-photo p2"></div>
+              <div class="pf-body">
+                <div class="title">Salad</div>
+                <div class="kcal">280 kcal</div>
+                <div class="line">Light one — logged.</div>
+              </div>
+            </article>
+            <article class="pf-card">
+              <div class="pf-photo p3"></div>
+              <div class="pf-body">
+                <div class="title">Oat latte</div>
+                <div class="kcal">180 kcal</div>
+                <div class="line">Sip counted.</div>
+              </div>
+            </article>
+          </div>
+          <button type="button" class="pf-fab" data-open-watch aria-label="Log plate">${CAM}</button>
+          ${sheetHTML('Photo first — Buddy estimates, you confirm.')}
+        </div>`;
+    }
+
+    const variants = [
+      () => { const h = quietRing(); queueMicrotask(() => wireSheet(document.querySelector('.variant'))); return h; },
+      () => { const h = ghostRoom(); queueMicrotask(() => wireSheet(document.querySelector('.variant'))); return h; },
+      () => { const h = plateFeed(); queueMicrotask(() => wireSheet(document.querySelector('.variant'))); return h; },
+    ];
+
+    const stage = document.getElementById('stage');
+    const picker = document.querySelector('.proto-picker');
+    const highlight = picker.querySelector('.proto-picker-highlight');
+    const items = [...picker.querySelectorAll('.proto-picker-item:not(.proto-picker-replay)')];
+    const replay = picker.querySelector('.proto-picker-replay');
+    let current = 0;
+
+    function moveHighlight() {
+      const el = items[current];
+      highlight.style.width = el.offsetWidth + 'px';
+      highlight.style.transform = `translateX(${el.offsetLeft}px)`;
+    }
+
+    function mount(i) {
+      stage.innerHTML = '';
+      requestAnimationFrame(() => {
+        stage.innerHTML = variants[i]();
+        wireSheet(stage.querySelector('.variant'));
+      });
+    }
+
+    function setActive(i) {
+      if (i < 0 || i >= variants.length) return;
+      current = i;
+      items.forEach((el, j) => {
+        el.toggleAttribute('data-active', j === i);
+        if (j === i) el.setAttribute('aria-current', 'true');
+        else el.removeAttribute('aria-current');
+      });
+      moveHighlight();
+      const url = new URL(location);
+      url.searchParams.set('v', i + 1);
+      history.replaceState(null, '', url);
+      mount(i);
+    }
+
+    items.forEach((el, i) => el.addEventListener('click', () => setActive(i)));
+    replay?.addEventListener('click', () => mount(current));
+    window.addEventListener('resize', moveHighlight);
+
+    document.addEventListener('keydown', (e) => {
+      if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const num = parseInt(e.key, 10);
+      if (num >= 1 && num <= variants.length) setActive(num - 1);
+      else if (e.key === 'ArrowRight') setActive((current + 1) % variants.length);
+      else if (e.key === 'ArrowLeft') setActive((current - 1 + variants.length) % variants.length);
+      else if (e.key === 'r' || e.key === 'R') mount(current);
+    });
+
+    setActive((parseInt(new URLSearchParams(location.search).get('v'), 10) || 1) - 1);
+    requestAnimationFrame(() => requestAnimationFrame(() => picker.setAttribute('data-ready', '')));
+  </script>
+</body>
+</html>

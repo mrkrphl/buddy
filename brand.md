@@ -1,6 +1,6 @@
 # Buddy — brand lock
 
-**Status:** LOCKED 2026-09-23 (ghost marshmallow)  
+**Status:** LOCKED 2026-09-23 (ghost marshmallow · Plan & Log)  
 **Product:** Buddy  
 **Studio:** Made by Night Folio (door mark stays off the App Icon)
 
@@ -19,18 +19,32 @@ A photo-first **food-energy companion** — calories as quiet scoreboard, Buddy 
 | Role | Line |
 |------|------|
 | Character / greeting | **What’s up, bud?** |
-| Job / store | **Watch what you eat.** |
+| Job / store | **See what you eat.** |
+
+## Core loop — Plan & Log
+
+1. **Plan** a meal (optional, ahead of time)  
+2. **Log** it when it’s real — usually with a **snap** (photo)
+
+| UI | Copy |
+|----|------|
+| Room | Plan |
+| Primary CTA | **Log plate** / **Snap plate** |
+| Planned state | Planned · awaiting photo |
+| Done state | **Logged** |
+| Avoid in UI | “Watch,” “Watch plate,” “Watched” |
 
 ## Mark — who is Buddy?
 
 **Buddy is a ghost.** Soft marshmallow sheet ghost — friendly food spirit who floats beside your plate.
 
 - Flat 2D graphic (matte bone fill) — **not** clay / 3D / plastic
-- Classic ghost hem (scalloped bottom), gentle float
-- Holds a **flat carrot** prop (snack energy, not diet morality)
+- Classic ghost hem (scalloped bottom), gentle quiet float
+- Tagline lock face: oval eyes + single needle cheek blush (mouthless) — carrot is optional prop, not required on every surface
 - Needle cheek spark, tiny eyes
 
 Not Halloween scare. Not a living animal critter. He’s a ghost on purpose.
+**Canon face ref:** `design/buddy-tagline-whats-up-bud.png` / brandkit “What’s up, bud?” panel.
 
 **Not:** Night Folio door, Wick flame, Kindling watercolor, realistic 3D mascot.
 
@@ -46,7 +60,12 @@ Not Halloween scare. Not a living animal critter. He’s a ghost on purpose.
 
 ## Personality
 
-Curious marshmallow ghost. Greets with “What’s up, bud?” Watches plates with you. Never guilt-coach. Light XP / streak.
+Curious marshmallow ghost. Greets with “What’s up, bud?” **Talks with you** (chat + check-ins) as a shame-light food & fitness companion — calories first. Helps you plan and log plates. Never guilt-coach. Fun interactions + light XP / streak.
+
+## Win condition
+
+Not more features than MFP — **better delivery** of the same jobs + a companion who communicates.
+
 
 ## Never
 
@@ -54,3 +73,4 @@ Curious marshmallow ghost. Greets with “What’s up, bud?” Watches plates wi
 - Purple AI glow  
 - 3D marshmallow critter as lock (archived)  
 - Wick / Kindling / door as App Icon  
+- “Watch” as a button or tab label (ambiguous with Apple Watch / video)  

@@ -26,6 +26,13 @@ struct TodayView: View {
 
     private var target: Int { prefs?.dailyCalorieTarget ?? 2200 }
 
+    private var reflection: BuddyReflection {
+        BuddyReflection.compute(
+            plates: plates.map(PlateSnapshot.init(from:)),
+            dailyTarget: target
+        )
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -83,15 +90,25 @@ struct TodayView: View {
 
     private var header: some View {
         HStack(alignment: .center, spacing: 16) {
-            BuddyMark(size: 64, mood: progress?.mood ?? .curious)
+            BuddyMark(
+                size: 56,
+                mood: progress?.mood ?? .curious,
+                reflection: reflection,
+                animated: true
+            )
+
             VStack(alignment: .leading, spacing: 6) {
                 Text("Buddy")
                     .font(.system(size: 28, weight: .semibold, design: .rounded))
                     .tracking(-0.02)
                     .foregroundStyle(BuddyTheme.bone)
-                Text(progress?.mood.label ?? "Curious")
-                    .font(.subheadline)
+                Text(reflection.label)
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(BuddyTheme.bone.opacity(0.9))
+                Text(reflection.blurb)
+                    .font(.caption)
                     .foregroundStyle(BuddyTheme.dim)
+                    .lineLimit(2)
                 HStack(spacing: 12) {
                     Label("Lv \(progress?.level ?? 1)", systemImage: "star.fill")
                     Label("\(progress?.streakDays ?? 0)d", systemImage: "flame.fill")
@@ -107,7 +124,7 @@ struct TodayView: View {
 
     private var plateCountLabel: String {
         let n = todayPlates.count
-        return n == 1 ? "1 plate watched" : "\(n) plates watched"
+        return n == 1 ? "1 plate logged" : "\(n) plates logged"
     }
 
     private var energyRing: some View {
@@ -161,7 +178,7 @@ struct TodayView: View {
                 .foregroundStyle(BuddyTheme.bone)
 
             if todayPlates.isEmpty {
-                Text("Snap a plate — Buddy watches with you.")
+                Text("Snap a plate — Buddy logs it with you.")
                     .font(.subheadline)
                     .foregroundStyle(BuddyTheme.dim)
                     .padding(.vertical, 20)
