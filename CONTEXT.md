@@ -16,7 +16,7 @@
 | Win condition | **Delivery** (UX, onboarding, interactions) + companion that **talks** — not feature count |
 | Body mirror | Local only — Buddy gets **hungry / soft / strong** from recent plates. Form PNGs in Assets + pixel fallback; idle float / hunger squash / soft breathe / strong flex. |
 | Mark assets | `BuddyFormBalanced` (canon) · `Hungry` · `Soft` · `Strong` · App Icon = canon ghost |
-| Studio | Made by Night Folio — own product mark |
+| Maker | Mark Raphael Sto. Domingo · package `com.mrkrphl.buddy` |
 
 ## Positioning
 

@@ -1,7 +1,7 @@
 import CoreGraphics
 import UIKit
 
-/// Night Folio / Buddy sprite palette (code-only pixel art).
+/// Buddy sprite palette (code-only pixel art).
 /// Indices match sprite matrices in `BuddyGhostPixels`.
 enum BuddyPalette {
     /// 0 transparent · 1 outline · 2 bone · 3 bone light · 4 dim · 5 needle · 6 carrot · 7 leaf · 8 eye

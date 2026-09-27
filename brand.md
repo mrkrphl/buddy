@@ -2,7 +2,7 @@
 
 **Status:** LOCKED 2026-09-23 (ghost marshmallow · Plan & Log)  
 **Product:** Buddy  
-**Studio:** Made by Night Folio (door mark stays off the App Icon)
+**Maker:** Mark Raphael Sto. Domingo (package: `com.mrkrphl`)
 
 **Boards**
 - **Canon mascot / App Icon:** [design/buddy-mascot-ghost-marshmallow.png](./design/buddy-mascot-ghost-marshmallow.png)
@@ -46,7 +46,7 @@ A photo-first **food-energy companion** — calories as quiet scoreboard, Buddy 
 Not Halloween scare. Not a living animal critter. He’s a ghost on purpose.
 **Canon face ref:** `design/buddy-tagline-whats-up-bud.png` / brandkit “What’s up, bud?” panel.
 
-**Not:** Night Folio door, Wick flame, Kindling watercolor, realistic 3D mascot.
+**Not:** studio door mark, Wick flame, Kindling watercolor, realistic 3D mascot.
 
 ## Tokens
 

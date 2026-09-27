@@ -1,6 +1,6 @@
 name: Buddy
 options:
-  bundleIdPrefix: com.nightfolio
+  bundleIdPrefix: com.mrkrphl
   deploymentTarget:
     iOS: "18.0"
   xcodeVersion: "16.0"
@@ -20,7 +20,7 @@ targets:
       - Buddy/Assets.xcassets
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.nightfolio.buddy
+        PRODUCT_BUNDLE_IDENTIFIER: com.mrkrphl.buddy
         MARKETING_VERSION: "1.0.0"
         CURRENT_PROJECT_VERSION: "1"
         INFOPLIST_KEY_CFBundleDisplayName: Buddy
@@ -39,7 +39,7 @@ targets:
       path: Buddy/Info.plist
       properties:
         CFBundleURLTypes:
-          - CFBundleURLName: com.nightfolio.buddy
+          - CFBundleURLName: com.mrkrphl.buddy
             CFBundleURLSchemes:
               - buddy
   BuddyTests:
@@ -51,7 +51,7 @@ targets:
       - target: Buddy
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.nightfolio.buddy.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.mrkrphl.buddy.tests
         GENERATE_INFOPLIST_FILE: YES
         IPHONEOS_DEPLOYMENT_TARGET: "18.0"
         TARGETED_DEVICE_FAMILY: "1"

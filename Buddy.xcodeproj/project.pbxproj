@@ -21,6 +21,7 @@
 		6BA2758B82A9638D0BEB7042 /* KitchenCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69E9A9325F389C349CD4240 /* KitchenCounterView.swift */; };
 		732D223F5EE45CE40EA1A93A /* KitchenEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */; };
 		78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AD187AC8B14EBA55B03E /* RootView.swift */; };
+		85909C702ACDB79DECE2BEAB /* BuddyHemWave.metal in Sources */ = {isa = PBXBuildFile; fileRef = 460EFBC641D391901D21F5CC /* BuddyHemWave.metal */; };
 		989388E464E88851B4046493 /* BuddyChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */; };
 		9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */; };
 		A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */; };
@@ -59,6 +60,7 @@
 		2931273B517A6C5C03E0EA20 /* BuddySchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddySchema.swift; sourceTree = "<group>"; };
 		38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPeerBase.swift; sourceTree = "<group>"; };
 		39F57C157C57FE0D868ABAF5 /* BuddyReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyReflection.swift; sourceTree = "<group>"; };
+		460EFBC641D391901D21F5CC /* BuddyHemWave.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = BuddyHemWave.metal; sourceTree = "<group>"; };
 		472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateVisionService.swift; sourceTree = "<group>"; };
 		49AFE6D53C6A50F4D02FD7DB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4DA583A925A3A8A61EE86FB5 /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		DB575FEDD4BDCC6D786F7C2F /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				460EFBC641D391901D21F5CC /* BuddyHemWave.metal */,
 				09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */,
 			);
 			path = Theme;
@@ -325,6 +328,7 @@
 				42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */,
 				989388E464E88851B4046493 /* BuddyChatService.swift in Sources */,
 				B95AE6A76376F5536A13B963 /* BuddyGhostPixels.swift in Sources */,
+				85909C702ACDB79DECE2BEAB /* BuddyHemWave.metal in Sources */,
 				E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */,
 				CA5ADF92F69329CFA25092CE /* BuddyPeerBase.swift in Sources */,
 				279319F566070AEFE0E9B5FF /* BuddyReflection.swift in Sources */,
@@ -385,7 +389,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrkrphl.buddy;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -538,7 +542,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrkrphl.buddy;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -555,7 +559,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrkrphl.buddy.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Buddy";
@@ -573,7 +577,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nightfolio.buddy.tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrkrphl.buddy.tests;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Buddy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Buddy";

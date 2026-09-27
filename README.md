@@ -2,7 +2,7 @@
 
 Photo-first calorie companion for iPhone — a **marshmallow ghost** who helps you **see what you eat**.
 
-**What’s up, bud?** · **Plan & Log** · Made by Night Folio.
+**What’s up, bud?** · **Plan & Log** · Mark Raphael Sto. Domingo.
 
 ## Stack
 

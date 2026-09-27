@@ -66,7 +66,7 @@ struct SettingsView: View {
                         Link("Support", destination: BuddyLegal.support)
                         Link("Terms", destination: BuddyLegal.terms)
                     } footer: {
-                        Text("by mrkrphl")
+                        Text("Mark Raphael Sto. Domingo")
                     }
                 }
                 .scrollContentBackground(.hidden)

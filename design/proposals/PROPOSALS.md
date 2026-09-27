@@ -5,7 +5,8 @@ Three directions. Same promise, tokens, and tagline. Different marks.
 **Promise:** photo-first food companion — see what you eat.  
 **Tagline:** See what you eat. · **Loop:** Plan & Log  
 **Tokens:** field `#0B0B0C` · bone `#E6E2DA` · dim `#8A8580` · needle `#E2452B`  
-**Studio:** Made by Night Folio (door stays off App Icon)
+**Maker:** Mark Raphael Sto. Domingo  
+**Package:** `com.mrkrphl` (door stays off App Icon)
 
 | | A · Companion | B · Aperture | C · Monogram |
 |---|---|---|---|
@@ -20,7 +21,7 @@ Three directions. Same promise, tokens, and tagline. Different marks.
 
 - Night canvas, not cream  
 - Needle only as accent  
-- No Wick flame, Kindling watercolor, Night Folio door  
+- No Wick flame, Kindling watercolor, or studio door mark on the App Icon  
 - No purple AI glow  
 
 ## Pick
