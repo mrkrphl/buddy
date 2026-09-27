@@ -1,0 +1,190 @@
+:root {
+  color-scheme: dark;
+  --field: #0b0b0c;
+  --canvas: #0a0a0b;
+  --bone: #e6e2da;
+  --dim: #8a8580;
+  --needle: #e2452b;
+  --rule: rgba(230, 226, 218, 0.12);
+  --card: #141416;
+  --max: 40rem;
+  --radius: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--field);
+  color: var(--bone);
+}
+
+a {
+  color: var(--bone);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--needle);
+}
+
+.page {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3.5rem;
+}
+
+.hero-bleed {
+  background:
+    radial-gradient(80% 60% at 80% 0%, rgba(226, 69, 43, 0.16) 0%, transparent 55%),
+    linear-gradient(180deg, var(--canvas) 0%, var(--field) 100%);
+  padding: 3.5rem 1.25rem 2.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.mark {
+  width: 72px;
+  height: 72px;
+  margin: 0 0 1.25rem;
+  display: block;
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  margin: 0 0 0.85rem;
+  color: var(--dim);
+}
+
+.hero-bleed h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.1rem, 7vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-weight: 600;
+}
+
+.hero-bleed .lede {
+  margin: 0;
+  max-width: 28rem;
+  color: var(--dim);
+  font-size: 1.05rem;
+}
+
+.cta-row {
+  margin: 1.5rem 0 0;
+}
+
+.btn {
+  display: inline-block;
+  min-height: 44px;
+  padding: 0.75rem 1.2rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn-primary {
+  background: var(--needle);
+  color: var(--bone);
+}
+
+.btn-primary:hover {
+  color: var(--bone);
+  filter: brightness(1.08);
+}
+
+.cta-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.proof h2 {
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+}
+
+.proof-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.proof-list li {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-size: 0.95rem;
+  color: var(--dim);
+}
+
+.proof-list strong {
+  color: var(--bone);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.site-nav,
+.site-footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.site-nav a,
+.site-footer a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  color: var(--dim);
+  margin-top: 2rem;
+}
+
+.article h1 {
+  font-size: 1.85rem;
+  margin: 0.5rem 0 0.35rem;
+}
+
+.article .updated,
+.back {
+  font-size: 0.85rem;
+  color: var(--dim);
+}
+
+.article h2 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.5rem;
+}
+
+.article p,
+.article li {
+  color: var(--dim);
+}
+
+.article strong {
+  color: var(--bone);
+}

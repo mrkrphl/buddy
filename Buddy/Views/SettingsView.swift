@@ -67,6 +67,9 @@ struct SettingsView: View {
                         Text("Rooms, not résumés.")
                             .font(.footnote)
                             .foregroundStyle(BuddyTheme.dim)
+                        Link("Privacy", destination: BuddyLegal.privacy)
+                        Link("Support", destination: BuddyLegal.support)
+                        Link("Terms", destination: BuddyLegal.terms)
                     }
                 }
                 .scrollContentBackground(.hidden)
@@ -81,4 +84,11 @@ struct SettingsView: View {
         }
         .preferredColorScheme(.dark)
     }
+}
+
+private enum BuddyLegal {
+    static let home = URL(string: "https://mrkrphl.github.io/buddy/")!
+    static let privacy = URL(string: "https://mrkrphl.github.io/buddy/privacy.html")!
+    static let support = URL(string: "https://mrkrphl.github.io/buddy/support.html")!
+    static let terms = URL(string: "https://mrkrphl.github.io/buddy/terms.html")!
 }
