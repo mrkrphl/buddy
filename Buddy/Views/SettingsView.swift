@@ -61,15 +61,12 @@ struct SettingsView: View {
                             .foregroundStyle(BuddyTheme.dim)
                     }
 
-                    Section("Studio") {
-                        Text("Made by Night Folio")
-                            .foregroundStyle(BuddyTheme.dim)
-                        Text("Rooms, not résumés.")
-                            .font(.footnote)
-                            .foregroundStyle(BuddyTheme.dim)
+                    Section {
                         Link("Privacy", destination: BuddyLegal.privacy)
                         Link("Support", destination: BuddyLegal.support)
                         Link("Terms", destination: BuddyLegal.terms)
+                    } footer: {
+                        Text("by mrkrphl")
                     }
                 }
                 .scrollContentBackground(.hidden)

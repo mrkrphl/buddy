@@ -134,7 +134,7 @@ struct OnboardingWelcomeView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 36)
 
-            Text("Made by Night Folio")
+            Text("by mrkrphl")
                 .font(.caption2)
                 .foregroundStyle(BuddyTheme.dim.opacity(0.7))
                 .padding(.bottom, 12)
