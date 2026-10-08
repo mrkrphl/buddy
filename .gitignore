@@ -4,5 +4,8 @@
 xcuserdata/
 DerivedData/
 .derivedData/
+build/
+*.ipa
+*.xcarchive
 .build/
 *.xcresult

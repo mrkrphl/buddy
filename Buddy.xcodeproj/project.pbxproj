@@ -22,6 +22,7 @@
 		732D223F5EE45CE40EA1A93A /* KitchenEditorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */; };
 		78C4BAF03678E4FF52364A99 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1632AD187AC8B14EBA55B03E /* RootView.swift */; };
 		85909C702ACDB79DECE2BEAB /* BuddyHemWave.metal in Sources */ = {isa = PBXBuildFile; fileRef = 460EFBC641D391901D21F5CC /* BuddyHemWave.metal */; };
+		917F031185449D9A9B99713B /* ARPlateScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECD126BC10F4B49F10E68C7 /* ARPlateScanView.swift */; };
 		989388E464E88851B4046493 /* BuddyChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */; };
 		9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */; };
 		A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */; };
@@ -85,6 +86,7 @@
 		C2818FCEE2C30E3E6B6E3FB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3002480FC1032599AB3F2D7 /* KitchenEditorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KitchenEditorScreen.swift; sourceTree = "<group>"; };
 		E5577077689CF31466357F59 /* MealWatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealWatchService.swift; sourceTree = "<group>"; };
+		EECD126BC10F4B49F10E68C7 /* ARPlateScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARPlateScanView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -116,6 +118,7 @@
 		A24A8F8CE15D32470B48D341 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EECD126BC10F4B49F10E68C7 /* ARPlateScanView.swift */,
 				BE7D6BE8EAAA4FFF8F3DC6F5 /* ChatView.swift */,
 				B6AC4950C205C0C533211C0A /* MainTabView.swift */,
 				4DA583A925A3A8A61EE86FB5 /* PlanView.swift */,
@@ -274,6 +277,7 @@
 				TargetAttributes = {
 					92D6CBD1E5E238F32E5109CD = {
 						DevelopmentTeam = 4KJ3FW47M2;
+						ProvisioningStyle = Automatic;
 					};
 					CA5DBCEBFC45D09090E9EA4A = {
 						DevelopmentTeam = 4KJ3FW47M2;
@@ -324,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				917F031185449D9A9B99713B /* ARPlateScanView.swift in Sources */,
 				02640606DCB561B517BE7D9B /* AddApplianceShelfView.swift in Sources */,
 				42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */,
 				989388E464E88851B4046493 /* BuddyChatService.swift in Sources */,
@@ -372,14 +377,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buddy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses a plate photo on-device to estimate energy when you log a meal.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses the camera for plate photos and live AR scanning so he can float with you and estimate energy on-device.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,7 +435,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4KJ3FW47M2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -495,7 +501,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4KJ3FW47M2;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -525,14 +531,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				ENABLE_TESTABILITY = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Buddy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Buddy;
 				INFOPLIST_KEY_CFBundleIconName = AppIcon;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses a plate photo on-device to estimate energy when you log a meal.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Buddy uses the camera for plate photos and live AR scanning so he can float with you and estimate energy on-device.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Buddy can use a library photo of your plate to estimate energy on-device.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

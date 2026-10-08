@@ -29,7 +29,7 @@ Use an Apple Intelligence–capable device (or Simulator on iOS 26+) to exercise
 ## MVP
 
 1. **Today** — daily energy ring, plate feed, Buddy mood + XP / streak
-2. **Log a plate** — camera or library → FM meal estimate → confirm → XP
+2. **Log a plate** — camera, library, or live AR (Buddy floats + scans) → FM meal estimate → confirm → XP
 3. **Buddy** — short character reactions (never guilt-coach)
 4. **Settings** — daily calorie target, AI readiness
 

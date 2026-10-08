@@ -5,9 +5,9 @@
 **Maker:** Mark Raphael Sto. Domingo (package: `com.mrkrphl`)
 
 **Boards**
-- **Canon mascot / App Icon:** [design/buddy-mascot-ghost-marshmallow.png](./design/buddy-mascot-ghost-marshmallow.png)
+- **Canon mascot / App Icon:** ghost only — [design/buddy-app-icon.png](./design/buddy-app-icon.png) · [design/buddy-mascot-ghost-marshmallow.png](./design/buddy-mascot-ghost-marshmallow.png)
 - Brandkit: [design/buddy-brandkit-locked.png](./design/buddy-brandkit-locked.png)
-- Archive (3D critter pass): [design/archive/](./design/archive/)
+- Archive (carrot / 3D critter passes): [design/archive/](./design/archive/) · `design/buddy-app-icon-carrot-v1-ghosty.png`
 - Proposals: [design/proposals/PROPOSALS.md](./design/proposals/PROPOSALS.md)
 
 ## Promise
@@ -40,11 +40,11 @@ A photo-first **food-energy companion** — calories as quiet scoreboard, Buddy 
 
 - Flat 2D graphic (matte bone fill) — **not** clay / 3D / plastic
 - Classic ghost hem (scalloped bottom), gentle quiet float
-- Tagline lock face: oval eyes + single needle cheek blush (mouthless) — carrot is optional prop, not required on every surface
+- Lock face: oval eyes + single needle cheek blush (mouthless) — **no carrot** on App Icon, brandkit mark, or in-app Buddy forms
 - Needle cheek spark, tiny eyes
 
 Not Halloween scare. Not a living animal critter. He’s a ghost on purpose.
-**Canon face ref:** `design/buddy-tagline-whats-up-bud.png` / brandkit “What’s up, bud?” panel.
+**Canon face ref:** live `BuddyFormBalanced` PNG · brandkit “What’s up, bud?” panel.
 
 **Not:** studio door mark, Wick flame, Kindling watercolor, realistic 3D mascot.
 

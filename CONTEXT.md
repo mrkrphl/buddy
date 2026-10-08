@@ -6,10 +6,10 @@
 |---|---|
 | Name | Buddy |
 | Platform | iOS (SwiftUI + SwiftData) |
-| Ritual | Photo-first plate log (snap → estimate) |
+| Ritual | Photo-first plate log (snap / library / live AR → estimate) |
 | AI | Apple Foundation Models — plate estimates + **companion chat** (RP food/fitness expert) |
 | Tone | Character + fun interactions + light XP |
-| Mark | Marshmallow ghost + carrot (canon — he is a ghost) |
+| Mark | Marshmallow sheet ghost only (no carrot) — App Icon = `BuddyFormBalanced` on field |
 | Greeting | What’s up, bud? |
 | Job line | See what you eat. |
 | Meal loop | Plan & Log |

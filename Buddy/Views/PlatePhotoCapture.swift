@@ -3,39 +3,80 @@ import SwiftUI
 import UIKit
 
 struct PlatePhotoCapture: View {
+    var reflection: BuddyReflection = .neutral
     var onImage: (UIImage) -> Void
 
     @State private var showCamera = false
+    @State private var showAR = false
     @State private var photoItem: PhotosPickerItem?
 
     var body: some View {
-        HStack(spacing: 12) {
-            Button {
-                showCamera = true
-            } label: {
-                Label("Log plate", systemImage: "camera.fill")
+        VStack(spacing: 12) {
+            HStack(spacing: 12) {
+                Button {
+                    showCamera = true
+                } label: {
+                    Label {
+                        Text("Log plate")
+                    } icon: {
+                        Image("iconLogPlate")
+                            .resizable()
+                            .renderingMode(.template)
+                            .scaledToFit()
+                            .frame(width: 20, height: 20)
+                    }
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(BuddyTheme.needle, in: RoundedRectangle(cornerRadius: BuddyTheme.radiusMD, style: .continuous))
                     .foregroundStyle(BuddyTheme.bone)
-            }
-            .buttonStyle(PressableButtonStyle())
+                }
+                .buttonStyle(PressableButtonStyle())
 
-            PhotosPicker(selection: $photoItem, matching: .images) {
-                Image(systemName: "photo.on.rectangle")
-                    .font(.title3.weight(.semibold))
-                    .frame(width: 56, height: 56)
-                    .background(BuddyTheme.bone.opacity(0.08), in: RoundedRectangle(cornerRadius: BuddyTheme.radiusMD, style: .continuous))
-                    .foregroundStyle(BuddyTheme.bone)
+                Button {
+                    showAR = true
+                } label: {
+                    Image("iconARScan")
+                        .resizable()
+                        .renderingMode(.template)
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                        .frame(width: 56, height: 56)
+                        .background(BuddyTheme.bone.opacity(0.08), in: RoundedRectangle(cornerRadius: BuddyTheme.radiusMD, style: .continuous))
+                        .foregroundStyle(BuddyTheme.bone)
+                }
+                .buttonStyle(PressableButtonStyle())
+                .accessibilityLabel("Live with Buddy")
+
+                PhotosPicker(selection: $photoItem, matching: .images) {
+                    Image("iconPhotoLibrary")
+                        .resizable()
+                        .renderingMode(.template)
+                        .scaledToFit()
+                        .frame(width: 22, height: 22)
+                        .frame(width: 56, height: 56)
+                        .background(BuddyTheme.bone.opacity(0.08), in: RoundedRectangle(cornerRadius: BuddyTheme.radiusMD, style: .continuous))
+                        .foregroundStyle(BuddyTheme.bone)
+                }
+                .buttonStyle(PressableButtonStyle())
+                .accessibilityLabel("Choose from library")
             }
-            .buttonStyle(PressableButtonStyle())
+
+            Text("Snap, library, or live AR — Buddy floats with the plate.")
+                .font(.caption)
+                .foregroundStyle(BuddyTheme.dim)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .fullScreenCover(isPresented: $showCamera) {
             CameraPicker { image in
                 onImage(image)
             }
             .ignoresSafeArea()
+        }
+        .fullScreenCover(isPresented: $showAR) {
+            ARPlateScanView(reflection: reflection) { image in
+                onImage(image)
+            }
         }
         .onChange(of: photoItem) { _, item in
             guard let item else { return }

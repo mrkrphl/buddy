@@ -43,7 +43,7 @@ struct BuddyMark: View {
     var size: CGFloat = 56
     var mood: BuddyMood = .curious
     var reflection: BuddyReflection = .neutral
-    var showsCarrot: Bool = true
+    var showsCarrot: Bool = false
     var animated: Bool = true
     /// Cloth hem Metal wave — off by default; can sample black on dark composites.
     var softCloth: Bool = false

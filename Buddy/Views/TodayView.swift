@@ -42,7 +42,7 @@ struct TodayView: View {
                     VStack(alignment: .leading, spacing: 24) {
                         header
                         energyRing
-                        PlatePhotoCapture { image in
+                        PlatePhotoCapture(reflection: reflection) { image in
                             pendingImage = image
                             showWatchFlow = true
                         }
