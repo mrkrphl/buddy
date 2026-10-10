@@ -5,21 +5,25 @@ import FoundationModels
 #endif
 
 enum BuddyChatService {
-    static func reply(message: String, ctx: BuddyTalkBeat.Context) async -> String {
+    static func reply(message: String, ctx: BuddyTalkBeat.Context) async -> BuddyTalkBeat.ChatTurn {
         let trimmed = BuddyTalkBeat.userPrompt(message)
         guard !trimmed.isEmpty else {
-            return BuddyTalkBeat.openingLine(reflection: ctx.reflection)
+            return .say(BuddyTalkBeat.openingLine(reflection: ctx.reflection))
+        }
+
+        if let intent = BuddyTalkBeat.parseLocalIntent(trimmed) {
+            return BuddyTalkBeat.resolve(intent, ctx: ctx)
         }
 
         #if canImport(FoundationModels)
         if #available(iOS 26.0, *) {
             if let live = await foundationReply(trimmed, ctx: ctx) {
-                return live
+                return .say(live)
             }
         }
         #endif
 
-        return BuddyTalkBeat.offlineReply(message: trimmed, ctx: ctx)
+        return .say(BuddyTalkBeat.offlineReply(message: trimmed, ctx: ctx))
     }
 
     #if canImport(FoundationModels)
