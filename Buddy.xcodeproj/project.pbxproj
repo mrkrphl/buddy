@@ -24,6 +24,7 @@
 		85909C702ACDB79DECE2BEAB /* BuddyHemWave.metal in Sources */ = {isa = PBXBuildFile; fileRef = 460EFBC641D391901D21F5CC /* BuddyHemWave.metal */; };
 		917F031185449D9A9B99713B /* ARPlateScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECD126BC10F4B49F10E68C7 /* ARPlateScanView.swift */; };
 		989388E464E88851B4046493 /* BuddyChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */; };
+		F9B15D3C0A4E5F6B7C8D9E0F /* BuddyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C27E4F1D5A6B7C8E9F0A1B /* BuddyRouter.swift */; };
 		9F34B3AD16BC8F5A75443A2C /* WatchPlateSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B9F8EDC9E5BF712C120F21 /* WatchPlateSheet.swift */; };
 		A13825BD68ED47BA0C34C523 /* BuddyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F05D41FF1DC0F42A406335 /* BuddyTheme.swift */; };
 		A4689C5AB25E8274CD6A728D /* BuddySchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2931273B517A6C5C03E0EA20 /* BuddySchema.swift */; };
@@ -58,6 +59,7 @@
 		1632AD187AC8B14EBA55B03E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		2167DC8D178BFD9DB0161CC9 /* PlatePhotoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatePhotoCapture.swift; sourceTree = "<group>"; };
 		2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyChatService.swift; sourceTree = "<group>"; };
+		B8C27E4F1D5A6B7C8E9F0A1B /* BuddyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyRouter.swift; sourceTree = "<group>"; };
 		2931273B517A6C5C03E0EA20 /* BuddySchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddySchema.swift; sourceTree = "<group>"; };
 		38EA0DEFC6BB2E8652D327E3 /* BuddyPeerBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPeerBase.swift; sourceTree = "<group>"; };
 		39F57C157C57FE0D868ABAF5 /* BuddyReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyReflection.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				2516E027C976BAEE74FB9FDC /* BuddyChatService.swift */,
+				B8C27E4F1D5A6B7C8E9F0A1B /* BuddyRouter.swift */,
 				8DCB225073498638681E9E67 /* DeviceAIReadiness.swift */,
 				E5577077689CF31466357F59 /* MealWatchService.swift */,
 				472A66269BD5406F6A9C22D6 /* PlateVisionService.swift */,
@@ -332,6 +335,7 @@
 				02640606DCB561B517BE7D9B /* AddApplianceShelfView.swift in Sources */,
 				42CE00F715104573E941EFB5 /* BuddyApp.swift in Sources */,
 				989388E464E88851B4046493 /* BuddyChatService.swift in Sources */,
+				F9B15D3C0A4E5F6B7C8D9E0F /* BuddyRouter.swift in Sources */,
 				B95AE6A76376F5536A13B963 /* BuddyGhostPixels.swift in Sources */,
 				85909C702ACDB79DECE2BEAB /* BuddyHemWave.metal in Sources */,
 				E269FF2EA97F943B66A0334B /* BuddyModelContainer.swift in Sources */,

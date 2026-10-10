@@ -8,10 +8,17 @@ struct ChatView: View {
     @Query private var prefsRows: [BuddyPreferences]
     @Query private var progressRows: [BuddyProgress]
     @Environment(\.modelContext) private var context
+    @Environment(\.buddyRouter) private var router
 
     @State private var draft = ""
     @State private var isThinking = false
+    @State private var pending: PendingConfirm?
     @FocusState private var focused: Bool
+
+    private enum PendingConfirm: Equatable {
+        case goal(kcal: Int)
+        case logPlate
+    }
 
     private var prefs: BuddyPreferences? { prefsRows.first }
     private var progress: BuddyProgress? { progressRows.first }
@@ -53,6 +60,9 @@ struct ChatView: View {
                     buddyBanner
                     Divider().overlay(BuddyTheme.bone.opacity(0.08))
                     messageList
+                    if let pending {
+                        confirmBar(pending)
+                    }
                     composer
                 }
             }
@@ -135,6 +145,45 @@ struct ChatView: View {
         }
     }
 
+    private func confirmBar(_ pending: PendingConfirm) -> some View {
+        let confirmTitle: String
+        switch pending {
+        case .goal(let kcal):
+            confirmTitle = "Set to \(BuddyTalkBeat.formatKcal(kcal))"
+        case .logPlate:
+            confirmTitle = "Log plate"
+        }
+        return HStack(spacing: 10) {
+            Button {
+                dismissPending(announce: true)
+            } label: {
+                Text("Not now")
+                    .font(.subheadline.weight(.medium))
+                    .foregroundStyle(BuddyTheme.bone)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(BuddyTheme.bone.opacity(0.1), in: RoundedRectangle(cornerRadius: BuddyTheme.radiusSM, style: .continuous))
+            }
+            .buttonStyle(PressableButtonStyle())
+
+            Button {
+                confirmPending()
+            } label: {
+                Text(confirmTitle)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(BuddyTheme.field)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+                    .background(BuddyTheme.needle, in: RoundedRectangle(cornerRadius: BuddyTheme.radiusSM, style: .continuous))
+            }
+            .buttonStyle(PressableButtonStyle())
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .background(BuddyTheme.canvas.opacity(0.98))
+        .transition(.move(edge: .bottom).combined(with: .opacity))
+    }
+
     private var composer: some View {
         HStack(spacing: 10) {
             TextField("Ask Buddy…", text: $draft, axis: .vertical)
@@ -153,6 +202,7 @@ struct ChatView: View {
             }
             .buttonStyle(PressableButtonStyle())
             .disabled(!canSend)
+            .accessibilityLabel("Send")
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
@@ -178,6 +228,7 @@ struct ChatView: View {
         guard !text.isEmpty else { return }
         draft = ""
         focused = false
+        pending = nil
 
         let userMsg = ChatMessage(isUser: true, text: text)
         context.insert(userMsg)
@@ -187,8 +238,61 @@ struct ChatView: View {
         let reply = await BuddyChatService.reply(message: text, ctx: talkContext)
         isThinking = false
 
-        let buddyMsg = ChatMessage(isUser: false, text: reply)
-        context.insert(buddyMsg)
+        switch reply {
+        case .say(let text):
+            context.insert(ChatMessage(isUser: false, text: text))
+        case .confirmGoal(let kcal, let text):
+            context.insert(ChatMessage(isUser: false, text: text))
+            withAnimation(BuddyTheme.easeOut) {
+                pending = .goal(kcal: kcal)
+            }
+        case .confirmLog(let text):
+            context.insert(ChatMessage(isUser: false, text: text))
+            withAnimation(BuddyTheme.easeOut) {
+                pending = .logPlate
+            }
+        }
+        try? context.save()
+    }
+
+    private func confirmPending() {
+        switch pending {
+        case .goal(let kcal):
+            if let prefs {
+                prefs.dailyCalorieTarget = kcal
+            } else {
+                context.insert(BuddyPreferences(dailyCalorieTarget: kcal))
+            }
+            pending = nil
+            context.insert(ChatMessage(
+                isUser: false,
+                text: "Done — daily goal is \(BuddyTalkBeat.formatKcal(kcal)) kcal. Today’s ring uses that now."
+            ))
+        case .logPlate:
+            pending = nil
+            context.insert(ChatMessage(
+                isUser: false,
+                text: "Today’s Log plate is there when you’re ready. I’m with you."
+            ))
+            router?.openTodayForLogging()
+        case nil:
+            return
+        }
+        try? context.save()
+    }
+
+    private func dismissPending(announce: Bool) {
+        let was = pending
+        pending = nil
+        guard announce, let was else { return }
+        let line: String
+        switch was {
+        case .goal:
+            line = "Okay — left your goal as \(BuddyTalkBeat.formatKcal(target)). Settings gear works too."
+        case .logPlate:
+            line = "No rush. Say “log a plate” when you want the shortcut."
+        }
+        context.insert(ChatMessage(isUser: false, text: line))
         try? context.save()
     }
 

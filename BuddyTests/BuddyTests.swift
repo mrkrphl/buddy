@@ -84,6 +84,99 @@ final class BuddyTests: XCTestCase {
         XCTAssertTrue(BuddyTalkBeat.openingLine(reflection: hungry).lowercased().contains("light"))
     }
 
+    func testTalkOpening_loseAndGainAsides() {
+        let balanced = BuddyReflection(hunger: 0.2, softness: 0.2, muscle: 0.2)
+        XCTAssertEqual(
+            BuddyTalkBeat.openingLine(reflection: balanced, intention: .lose),
+            "What’s up, bud? Ready to plan or log whenever you are. We’re aiming lighter. Calories first, no shame."
+        )
+        XCTAssertEqual(
+            BuddyTalkBeat.openingLine(reflection: balanced, intention: .gain),
+            "What’s up, bud? Ready to plan or log whenever you are. Fuel-up mode. Let’s get energy in."
+        )
+    }
+
+    func testHowIsToday_namesCaloriesAndTarget() async {
+        let empty = BuddyTalkBeat.Context(
+            caloriesToday: 0,
+            target: 2200,
+            plateCount: 0,
+            reflection: .neutral,
+            plannedTitles: []
+        )
+        let emptyTurn = await BuddyChatService.reply(message: "how is today", ctx: empty)
+        XCTAssertEqual(emptyTurn, .say("Zero plates so far, 0 kcal. Target is 2,200 kcal."))
+
+        var logged = empty
+        logged.caloriesToday = 520
+        logged.plateCount = 1
+        let loggedTurn = await BuddyChatService.reply(message: "how is today", ctx: logged)
+        XCTAssertEqual(loggedTurn, .say("520 kcal so far across 1 plate. Target is 2,200 kcal."))
+    }
+
+    func testWhatShouldIEat_usesPlanTitle() async {
+        let planned = BuddyTalkBeat.Context(
+            caloriesToday: 0,
+            target: 2200,
+            plateCount: 0,
+            reflection: .neutral,
+            plannedTitles: ["Rice bowl"]
+        )
+        let plannedTurn = await BuddyChatService.reply(message: "what should I eat", ctx: planned)
+        XCTAssertEqual(
+            plannedTurn,
+            .say("You’ve got Rice bowl planned. Say “log a plate” when it’s real.")
+        )
+
+        var bare = planned
+        bare.plannedTitles = []
+        let bareTurn = await BuddyChatService.reply(message: "what should I eat", ctx: bare)
+        XCTAssertEqual(
+            bareTurn,
+            .say("Nothing planned today. Say “log a plate” when food is in front of you.")
+        )
+    }
+
+    func testLogAndGoalIntents_offerConfirm() async {
+        let ctx = BuddyTalkBeat.Context(
+            caloriesToday: 0,
+            target: 2200,
+            plateCount: 0,
+            reflection: .neutral,
+            plannedTitles: []
+        )
+        let log = await BuddyChatService.reply(message: "log a plate", ctx: ctx)
+        XCTAssertEqual(
+            log,
+            .confirmLog(message: "Let’s log it. Confirm below, then open Today and hit Log plate — snap, library, or live AR.")
+        )
+        let goal = await BuddyChatService.reply(message: "set goal to 1800", ctx: ctx)
+        XCTAssertEqual(
+            goal,
+            .confirmGoal(
+                kcal: 1800,
+                message: "Set your daily goal to 1,800 kcal? Confirm below and I’ll update Today."
+            )
+        )
+        XCTAssertNil(BuddyTalkBeat.parseLocalIntent("I ate about 1800 calories for lunch"))
+        XCTAssertEqual(BuddyTalkBeat.parseLocalIntent("set goal to 1,850 kcal"), .proposeGoal(kcal: 1850))
+    }
+
+    func testNormalizeCalorieTarget_clampsAndRounds() {
+        XCTAssertEqual(BuddyTalkBeat.normalizeCalorieTarget(1833), 1850)
+        XCTAssertEqual(BuddyTalkBeat.normalizeCalorieTarget(900), 1200)
+        XCTAssertEqual(BuddyTalkBeat.normalizeCalorieTarget(6000), 4500)
+    }
+
+    @MainActor
+    func testRouter_openTodayPulsesLog() {
+        let router = BuddyRouter()
+        router.selectedTab = 2
+        router.openTodayForLogging()
+        XCTAssertEqual(router.selectedTab, 0)
+        XCTAssertEqual(router.logPlatePulseToken, 1)
+    }
+
     func testReflection_superHungryFlag() {
         let mild = BuddyReflection(hunger: 0.6, softness: 0.1, muscle: 0.1)
         let melted = BuddyReflection(hunger: 0.85, softness: 0.1, muscle: 0.1)
